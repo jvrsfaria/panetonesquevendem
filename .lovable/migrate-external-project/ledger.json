@@ -74,9 +74,9 @@
     {
       "capability": "analytics_meta_pixel",
       "source": "empty <!-- Meta Pixel --> placeholder, no pixel code or ID present",
-      "outcome": "not_configured_in_source",
+      "outcome": "installed_supplied_pixel_pageview_with_advertising_gate",
       "status": "pending",
-      "next_action": "Ask user for Meta Pixel ID if they want tracking"
+      "next_action": "Verify published installation and receipt in Meta Events Manager; purchases remain external to this site"
     },
     {
       "capability": "public_endpoints_webhooks_schedules",

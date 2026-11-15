@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 
 import { CHECKOUT_URL, buildCheckoutUrl } from "@/lib/checkout";
+import { startMetaPixel } from "@/lib/meta-pixel";
+import { PixelPrivacy } from "@/components/PixelPrivacy";
 import heroImg from "@/assets/hero-panetone-chocolate.jpg.asset.json";
 import galFatia from "@/assets/galeria-fatia.jpg.asset.json";
 import galNozes from "@/assets/galeria-nozes.jpg.asset.json";
@@ -147,6 +149,7 @@ function useCheckoutUrl() {
 
 function Index() {
   const checkout = useCheckoutUrl();
+  useEffect(() => startMetaPixel(), []);
   const cta = (
     <a className="cta" href={checkout}>
       Quero o meu por R$ 27,90
@@ -376,7 +379,7 @@ function Index() {
       </main>
 
       <footer className="rodape">
-        <div className="wrap">Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano</div>
+        <div className="wrap">Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano<PixelPrivacy /></div>
       </footer>
       <div className="cta-fixo">
         <a className="cta" href="#oferta">
