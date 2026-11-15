@@ -12,7 +12,7 @@ import galEmbalado from "@/assets/galeria-embalado.jpg.asset.json";
 
 const TITLE = "Panetones que Vendem · 15 receitas recheadas para lucrar no Natal";
 const DESCRIPTION =
-  "Guia de produção e venda de panetones artesanais: 15 receitas recheadas, embalagem, precificação e scripts de venda. R$ 27,90.";
+  "Guia de produção e venda de panetones artesanais: 15 receitas recheadas, embalagem, precificação e scripts de venda. R$ 19,90.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
