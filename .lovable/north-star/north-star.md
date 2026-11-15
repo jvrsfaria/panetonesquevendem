@@ -6,4 +6,4 @@ Confeiteiros caseiros ganham dinheiro vendendo panetones recheados feitos por el
 
 ## Métrica
 
-Pessoas que concluem a compra do guia na Kirvano a cada semana
+Pessoas que concluem a compra do guia na Celetus a cada semana

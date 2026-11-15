@@ -59,14 +59,14 @@
     },
     {
       "capability": "external_provider_checkout",
-      "source": "Kirvano checkout link https://pay.kirvano.com/e43b6e56-d35c-4f47-9a85-f32ca4c49c29 (4 buttons, order bump configured on Kirvano)",
+      "source": "Kirvano checkout link https://pay.kirvano.com/e43b6e56-d35c-4f47-9a85-f32ca4c49c29 (4 buttons, order bump configured on Kirvano); replaced on 2026-11-15 by Celetus checkout https://pay.celetus.com/270LZVZ6",
       "outcome": "preserve",
       "status": "verified",
       "next_action": "none"
     },
     {
       "capability": "utm_passthrough",
-      "source": "inline script forwarding utm_source/medium/campaign/content/term, src, sck to Kirvano links",
+      "source": "inline script forwarding utm_source/medium/campaign/content/term, src, sck to checkout links (now Celetus)",
       "outcome": "preserve",
       "status": "verified",
       "next_action": "none"
