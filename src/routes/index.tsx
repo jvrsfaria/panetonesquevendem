@@ -29,12 +29,16 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const recipeSvgs = import.meta.glob<string>("../assets/receitas/*.svg", {
+type AssetPointer = { url: string };
+const recipePhotos = import.meta.glob<AssetPointer>("../assets/cardapio/*.jpg.asset.json", {
   eager: true,
-  query: "?url",
   import: "default",
 });
-const svgFor = (n: number) => recipeSvgs[`../assets/receitas/${String(n).padStart(2, "0")}.svg`];
+const photoFor = (n: number) => {
+  const prefix = `../assets/cardapio/${String(n).padStart(2, "0")}-`;
+  const key = Object.keys(recipePhotos).find((k) => k.startsWith(prefix));
+  return key ? (recipePhotos[key]?.url ?? "") : "";
+};
 
 type Tier = "ent" | "car" | "pre";
 const TIER_LABEL: Record<Tier, string> = { ent: "Entrada", car: "Carro-chefe", pre: "Premium" };
@@ -230,7 +234,7 @@ function Index() {
               {RECEITAS.map((r, i) => (
                 <li className="rc" key={r.nome}>
                   <div className="rc-svg">
-                    <img src={svgFor(i + 1)} alt={r.nome} width={400} height={400} loading="lazy" />
+                    <img src={photoFor(i + 1)} alt={r.nome} width={400} height={400} loading="lazy" />
                   </div>
                   <span className="rc-n">{String(i + 1).padStart(2, "0")}</span>
                   <b>{r.nome}</b>

@@ -33,4 +33,4 @@ use the editor.
 
 - The sales page lives at `/` (src/routes/index.tsx); its ported styles are component classes in `src/styles.css` under `@layer components`, driven by brand tokens. Why: keeps the original page's look in one design-system file.
 - Every buy button uses `buildCheckoutUrl` from `src/lib/checkout.ts` (tested in `checkout.test.ts`). Why: ad tracking params must reach the external checkout.
-- Photos are Lovable Assets pointers; recipe illustrations are SVG files in `src/assets/receitas/`. Why: keeps the repo light and SVGs editable.
+- Photos are Lovable Assets pointers; the 15 cardápio photos live in `src/assets/cardapio/` named `NN-sabor.jpg.asset.json` and are matched to RECEITAS by the NN prefix. Why: keeps the repo light and each photo tied to its flavor.
