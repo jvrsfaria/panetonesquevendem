@@ -402,11 +402,7 @@ function Index() {
                 <li>Tabelas e checklists para imprimir</li>
               </ul>
               {cta}
-              <div className="bump">
-                <b>No checkout:</b> você pode adicionar o <b>Kit Natal de Encomendas</b>, com cardápios editáveis,
-                etiquetas, tags de presente e a planilha que calcula o custo e o preço de cada sabor, de R$ 19,90 por R$
-                9,90.
-              </div>
+              <div className="bump"></div>
               <div className="garantia">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
