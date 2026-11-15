@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- The sales page lives at `/` (src/routes/index.tsx); its ported styles are component classes in `src/styles.css` under `@layer components`, driven by brand tokens. Why: keeps the original page's look in one design-system file.
+- Every buy button uses `buildCheckoutUrl` from `src/lib/checkout.ts` (tested in `checkout.test.ts`). Why: ad tracking params must reach the external checkout.
+- Photos are Lovable Assets pointers; recipe illustrations are SVG files in `src/assets/receitas/`. Why: keeps the repo light and SVGs editable.
