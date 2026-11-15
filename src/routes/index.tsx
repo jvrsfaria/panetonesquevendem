@@ -40,26 +40,26 @@ type Tier = "ent" | "car" | "pre";
 const TIER_LABEL: Record<Tier, string> = { ent: "Entrada", car: "Carro-chefe", pre: "Premium" };
 
 const RECEITAS: { nome: string; tier: Tier }[] = [
-  { nome: "Clássico de Frutas com Laranja", tier: "ent" },
-  { nome: "Gotas com Brigadeiro", tier: "ent" },
-  { nome: "Chocotone Trufado ao Leite", tier: "ent" },
-  { nome: "Trufado Meio Amargo", tier: "car" },
-  { nome: "Leitinho com Creme de Avelã", tier: "car" },
-  { nome: "Duo Chocolate", tier: "car" },
-  { nome: "Coco com Chocolate", tier: "car" },
-  { nome: "Doce de Leite com Nozes", tier: "car" },
-  { nome: "Paçoca Cremosa", tier: "ent" },
-  { nome: "Morango com Chocolate Branco", tier: "car" },
-  { nome: "Limão Siciliano com Chocolate Branco", tier: "pre" },
-  { nome: "Pistache com Chocolate Branco", tier: "pre" },
-  { nome: "Frutas Vermelhas com Chocolate Branco", tier: "pre" },
-  { nome: "Café com Caramelo Salgado", tier: "pre" },
-  { nome: "Kit Mini Panetones Sortidos", tier: "pre" },
+  { nome: "Panetone de Chocolate Branco com Frutas Vermelhas", tier: "ent" },
+  { nome: "Panetone de Banoffee", tier: "ent" },
+  { nome: "Panetone de Romeu e Julieta", tier: "ent" },
+  { nome: "Panetone de Tiramisù", tier: "car" },
+  { nome: "Panetone de Churros", tier: "car" },
+  { nome: "Panetone de Cookies and Cream", tier: "car" },
+  { nome: "Panetone de Pistache", tier: "car" },
+  { nome: "Panetone de Morango com Creme Ninho", tier: "car" },
+  { nome: "Panetone de Mousse de Limão Siciliano", tier: "ent" },
+  { nome: "Panetone de Maracujá Cremoso", tier: "car" },
+  { nome: "Panetone de Chocolate com Laranja", tier: "pre" },
+  { nome: "Panetone de Prestígio", tier: "pre" },
+  { nome: "Panetone de Doce de Leite com Nozes", tier: "pre" },
+  { nome: "Panetone de Ninho com Creme de Avelã", tier: "pre" },
+  { nome: "Panetone de Brigadeiro Cremoso", tier: "pre" },
 ];
 
 const PARTES = [
   { n: "PARTE 1", t: "Produção", d: "Ingredientes, equipamentos, a massa clássica passo a passo, a massa de chocolate, recheios, coberturas e os erros mais comuns." },
-  { n: "PARTE 2", t: "As 15 receitas", d: "Do clássico de frutas ao pistache, cada uma com ficha completa, ponto de atenção, validade e dica de venda." },
+  { n: "PARTE 2", t: "As 15 receitas", d: "Do banoffee ao brigadeiro cremoso, cada uma com ficha completa, ponto de atenção, validade e dica de venda." },
   { n: "PARTE 3", t: "Apresentação", d: "Três níveis de embalagem, fotos que dão água na boca com o celular, validade e o que vai na etiqueta." },
   { n: "PARTE 4", t: "Venda", d: "Custo real, preço com margem, onde vender, scripts prontos e como organizar a produção em escala." },
 ];
