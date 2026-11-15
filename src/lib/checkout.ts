@@ -1,6 +1,6 @@
-export const CHECKOUT_URL = "https://pay.celetus.com/270LZVZ6";
+export const CHECKOUT_URL = "https://pay.kirvano.com/e43b6e56-d35c-4f47-9a85-f32ca4c49c29";
 
-/** Ad-tracking params forwarded from the landing URL to the Celetus checkout. */
+/** Ad-tracking params forwarded from the landing URL to the Kirvano checkout. */
 export const TRACKING_PARAMS = [
   "utm_source",
   "utm_medium",

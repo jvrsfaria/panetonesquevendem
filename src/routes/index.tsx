@@ -188,7 +188,7 @@ const FAQ = [
   },
   {
     q: "Como recebo o e-book?",
-    a: "Logo depois da confirmação do pagamento, a Celetus envia o acesso para o seu e-mail. Você baixa o PDF e lê no celular, no tablet ou no computador.",
+    a: "Logo depois da confirmação do pagamento, a Kirvano envia o acesso para o seu e-mail. Você baixa o PDF e lê no celular, no tablet ou no computador.",
   },
   {
     q: "Preciso de batedeira planetária?",
@@ -420,7 +420,7 @@ function Index() {
                   <path d="M16 24l6 6 11 -12" />
                 </svg>
                 <span>
-                  <b>7 dias de garantia.</b> Se o guia não for para você, peça o reembolso pela Celetus em até 7 dias
+                  <b>7 dias de garantia.</b> Se o guia não for para você, peça o reembolso pela Kirvano em até 7 dias
                   após a compra.
                 </span>
               </div>
@@ -455,7 +455,7 @@ function Index() {
 
       <footer className="rodape">
         <div className="wrap">
-          Panetones que Vendem · Vitta Digital · Pagamento processado pela Celetus
+          Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano
           <PixelPrivacy />
         </div>
       </footer>
