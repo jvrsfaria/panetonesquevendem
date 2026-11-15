@@ -64,10 +64,26 @@ const RECEITAS: { nome: string; tier: Tier }[] = [
 ];
 
 const PARTES = [
-  { n: "PARTE 1", t: "Produção", d: "Ingredientes, equipamentos, a massa clássica passo a passo, a massa de chocolate, recheios, coberturas e os erros mais comuns." },
-  { n: "PARTE 2", t: "As 15 receitas", d: "Do banoffee ao brigadeiro cremoso, cada uma com ficha completa, ponto de atenção, validade e dica de venda." },
-  { n: "PARTE 3", t: "Apresentação", d: "Três níveis de embalagem, fotos que dão água na boca com o celular, validade e o que vai na etiqueta." },
-  { n: "PARTE 4", t: "Venda", d: "Custo real, preço com margem, onde vender, scripts prontos e como organizar a produção em escala." },
+  {
+    n: "PARTE 1",
+    t: "Produção",
+    d: "Ingredientes, equipamentos, a massa clássica passo a passo, a massa de chocolate, recheios, coberturas e os erros mais comuns.",
+  },
+  {
+    n: "PARTE 2",
+    t: "As 15 receitas",
+    d: "Do banoffee ao brigadeiro cremoso, cada uma com ficha completa, ponto de atenção, validade e dica de venda.",
+  },
+  {
+    n: "PARTE 3",
+    t: "Apresentação",
+    d: "Três níveis de embalagem, fotos que dão água na boca com o celular, validade e o que vai na etiqueta.",
+  },
+  {
+    n: "PARTE 4",
+    t: "Venda",
+    d: "Custo real, preço com margem, onde vender, scripts prontos e como organizar a produção em escala.",
+  },
 ];
 
 function Ico({ children }: { children: ReactNode }) {
@@ -93,17 +109,33 @@ function Ico({ children }: { children: ReactNode }) {
 
 const EXTRAS: { icon: ReactNode; t: string; d: string }[] = [
   {
-    icon: (<><path d="M8 18l16 -8 16 8v18l-16 8 -16 -8z" /><path d="M8 18l16 8 16 -8M24 26v18" /></>),
+    icon: (
+      <>
+        <path d="M8 18l16 -8 16 8v18l-16 8 -16 -8z" />
+        <path d="M8 18l16 8 16 -8M24 26v18" />
+      </>
+    ),
     t: "Embalagem que vende",
     d: "Três níveis para três faixas de preço.",
   },
   {
-    icon: (<><rect x="6" y="14" width="36" height="24" rx="3" /><circle cx="24" cy="26" r="7" /><path d="M17 14l3 -5h8l3 5" /></>),
+    icon: (
+      <>
+        <rect x="6" y="14" width="36" height="24" rx="3" />
+        <circle cx="24" cy="26" r="7" />
+        <path d="M17 14l3 -5h8l3 5" />
+      </>
+    ),
     t: "Fotos com celular",
     d: "A montagem com luz de janela e a foto da fatia que vende sozinha.",
   },
   {
-    icon: (<><circle cx="24" cy="24" r="16" /><path d="M28 18q-4 -3 -8 0t0 6 8 6 0 6 -8 0M24 13v4M24 31v4" /></>),
+    icon: (
+      <>
+        <circle cx="24" cy="24" r="16" />
+        <path d="M28 18q-4 -3 -8 0t0 6 8 6 0 6 -8 0M24 13v4M24 31v4" />
+      </>
+    ),
     t: "Custo e preço",
     d: "A fórmula da margem, com um exemplo resolvido passo a passo.",
   },
@@ -113,30 +145,67 @@ const EXTRAS: { icon: ReactNode; t: string; d: string }[] = [
     d: "Lançamento, follow-up, fechamento, empresas e pós-venda.",
   },
   {
-    icon: (<><rect x="8" y="10" width="32" height="30" rx="3" /><path d="M8 18h32M16 6v8M32 6v8" /></>),
+    icon: (
+      <>
+        <rect x="8" y="10" width="32" height="30" rx="3" />
+        <path d="M8 18h32M16 6v8M32 6v8" />
+      </>
+    ),
     t: "Plano de produção",
     d: "Capacidade do forno, semana típica e organização das entregas.",
   },
   {
-    icon: (<><rect x="12" y="6" width="24" height="36" rx="3" /><path d="M12 20h24M17 12v4M17 25v6" /></>),
+    icon: (
+      <>
+        <rect x="12" y="6" width="24" height="36" rx="3" />
+        <path d="M12 20h24M17 12v4M17 25v6" />
+      </>
+    ),
     t: "Validade e etiqueta",
     d: "Quanto tempo cada recheio dura e o que a etiqueta precisa informar.",
   },
 ];
 
 const DEPOIMENTOS = [
-  { q: "Eu sempre quis fazer panetones para vender, mas tinha dificuldade em encontrar receitas realmente bonitas e com acabamento profissional. O material me surpreendeu! As receitas são muito bem explicadas e as ideias de sabores são incríveis.", a: "Mariana O." },
-  { q: "O que mais gostei foi a variedade de receitas. São opções que realmente chamam a atenção e ajudam a montar um cardápio diferenciado para o Natal. Valeu muito a pena!", a: "Camila R." },
-  { q: "Achei o e-book muito completo! Gostei especialmente da apresentação das receitas e das combinações de sabores. Já estou planejando meu cardápio de Natal e o material está me ajudando bastante.", a: "Fernanda C." },
+  {
+    q: "Eu sempre quis fazer panetones para vender, mas tinha dificuldade em encontrar receitas realmente bonitas e com acabamento profissional. O material me surpreendeu! As receitas são muito bem explicadas e as ideias de sabores são incríveis.",
+    a: "Mariana O.",
+  },
+  {
+    q: "O que mais gostei foi a variedade de receitas. São opções que realmente chamam a atenção e ajudam a montar um cardápio diferenciado para o Natal. Valeu muito a pena!",
+    a: "Camila R.",
+  },
+  {
+    q: "Achei o e-book muito completo! Gostei especialmente da apresentação das receitas e das combinações de sabores. Já estou planejando meu cardápio de Natal e o material está me ajudando bastante.",
+    a: "Fernanda C.",
+  },
 ];
 
 const FAQ = [
-  { q: "Preciso ter experiência com panetone?", a: "Não. O capítulo 3 explica a massa passo a passo, com o teste do véu e dois cronogramas. A receita mais simples entre as recheadas é indicada para a sua primeira fornada de teste." },
-  { q: "Como recebo o e-book?", a: "Logo depois da confirmação do pagamento, a Kirvano envia o acesso para o seu e-mail. Você baixa o PDF e lê no celular, no tablet ou no computador." },
-  { q: "Preciso de batedeira planetária?", a: "Não. Uma batedeira com gancho resolve. O capítulo 2 lista o mínimo para começar e o que ajuda quando o volume cresce." },
-  { q: "As receitas usam fermento natural?", a: "Não. Todas usam fermento biológico seco pelo método esponja, que é mais previsível para quem está começando. A fermentação natural aparece como próximo nível." },
-  { q: "O livro ensina a calcular o preço?", a: "Sim. A Parte 4 mostra como somar ingredientes, embalagem, gás e a sua hora de trabalho, e como aplicar a margem. Cada receita tem um quadro de custo para você preencher." },
-  { q: "Posso vender os panetones que fizer?", a: "Sim, esse é o objetivo do guia. O capítulo 9 orienta sobre validade, etiqueta e a consulta à vigilância sanitária do seu município." },
+  {
+    q: "Preciso ter experiência com panetone?",
+    a: "Não. O capítulo 3 explica a massa passo a passo, com o teste do véu e dois cronogramas. A receita mais simples entre as recheadas é indicada para a sua primeira fornada de teste.",
+  },
+  {
+    q: "Como recebo o e-book?",
+    a: "Logo depois da confirmação do pagamento, a Kirvano envia o acesso para o seu e-mail. Você baixa o PDF e lê no celular, no tablet ou no computador.",
+  },
+  {
+    q: "Preciso de batedeira planetária?",
+    a: "Não. Uma batedeira com gancho resolve. O capítulo 2 lista o mínimo para começar e o que ajuda quando o volume cresce.",
+  },
+  {
+    q: "As receitas usam fermento natural?",
+    a: "Não. Todas usam fermento biológico seco pelo método esponja, que é mais previsível para quem está começando. A fermentação natural aparece como próximo nível.",
+  },
+  {
+    q: "O livro ensina a calcular o preço?",
+    a: "Sim. A Parte 4 mostra como somar ingredientes, embalagem, gás e a sua hora de trabalho, e como aplicar a margem. Cada receita tem um quadro de custo para você preencher.",
+  },
+  {
+    q: "Posso vender os panetones que fizer?",
+    a: "Sim, esse é o objetivo do guia. O capítulo 9 orienta sobre validade, etiqueta e a consulta à vigilância sanitária do seu município.",
+  },
 ];
 
 function useCheckoutUrl() {
@@ -152,7 +221,7 @@ function Index() {
   useEffect(() => startMetaPixel(), []);
   const cta = (
     <a className="cta" href={checkout}>
-      Quero o meu por R$ 27,90
+      Quero o meu por R$ 19,90
     </a>
   );
 
@@ -173,9 +242,7 @@ function Index() {
               <li>Mensagens prontas para vender pelo WhatsApp</li>
             </ul>
             {cta}
-            <div className="nota">
-              E-book em PDF · Acesso imediato após a compra · Feito para ler no celular
-            </div>
+            <div className="nota">E-book em PDF · Acesso imediato após a compra · Feito para ler no celular</div>
           </div>
           <div className="ill">
             <img
@@ -197,8 +264,20 @@ function Index() {
             <div className="galeria">
               <img src={galFatia.url} width={600} height={600} loading="lazy" alt="Fatia de panetone caseiro" />
               <img src={galNozes.url} width={600} height={600} loading="lazy" alt="Panetone cortado com nozes" />
-              <img src={galChocBranco.url} width={600} height={600} loading="lazy" alt="Panetone com chocolate branco" />
-              <img src={galEmbalado.url} width={600} height={600} loading="lazy" alt="Panetone embalado para presente" />
+              <img
+                src={galChocBranco.url}
+                width={600}
+                height={600}
+                loading="lazy"
+                alt="Panetone com chocolate branco"
+              />
+              <img
+                src={galEmbalado.url}
+                width={600}
+                height={600}
+                loading="lazy"
+                alt="Panetone embalado para presente"
+              />
             </div>
             <div className="galeria-nota">Imagens ilustrativas</div>
           </div>
@@ -313,7 +392,7 @@ function Index() {
               <div className="kicker">Acesso imediato</div>
               <h2>Panetones que Vendem</h2>
               <div className="preco">
-                <small>R$</small>27,90
+                <small>R$</small>19,90
               </div>
               <div className="preco-nota">pagamento único</div>
               <ul className="check">
@@ -325,8 +404,8 @@ function Index() {
               {cta}
               <div className="bump">
                 <b>No checkout:</b> você pode adicionar o <b>Kit Natal de Encomendas</b>, com cardápios editáveis,
-                etiquetas, tags de presente e a planilha que calcula o custo e o preço de cada sabor, de R$ 19,90 por
-                R$ 9,90.
+                etiquetas, tags de presente e a planilha que calcula o custo e o preço de cada sabor, de R$ 19,90 por R$
+                9,90.
               </div>
               <div className="garantia">
                 <svg
@@ -379,11 +458,14 @@ function Index() {
       </main>
 
       <footer className="rodape">
-        <div className="wrap">Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano<PixelPrivacy /></div>
+        <div className="wrap">
+          Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano
+          <PixelPrivacy />
+        </div>
       </footer>
       <div className="cta-fixo">
         <a className="cta" href="#oferta">
-          Garantir o meu por R$ 27,90
+          Garantir o meu por R$ 19,90
         </a>
       </div>
     </>
