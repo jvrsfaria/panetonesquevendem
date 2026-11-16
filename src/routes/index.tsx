@@ -455,7 +455,6 @@ function Index() {
 
       <footer className="rodape">
         <div className="wrap">
-          Panetones que Vendem · Vitta Digital · Pagamento processado pela Kirvano
           <PixelPrivacy />
         </div>
       </footer>
