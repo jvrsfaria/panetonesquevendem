@@ -1,43 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
-
+import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { ArrowRight, BookOpen, ChefHat, Layers, Calculator, Package, MessageCircle, FileText, Zap, Check, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { CHECKOUT_URL, buildCheckoutUrl } from "@/lib/checkout";
-import { startMetaPixel } from "@/lib/meta-pixel";
+import { startMetaPixel, trackCheckout } from "@/lib/meta-pixel";
 import { PixelPrivacy } from "@/components/PixelPrivacy";
-import heroImg from "@/assets/hero-panetone-chocolate.jpg.asset.json";
-import galFatia from "@/assets/galeria-fatia.jpg.asset.json";
-import galNozes from "@/assets/galeria-nozes.jpg.asset.json";
-import galChocBranco from "@/assets/galeria-chocolate-branco.jpg.asset.json";
-import galEmbalado from "@/assets/galeria-embalado.jpg.asset.json";
+import heroImg from "@/assets/panetone-recheado.webp.asset.json";
 
-const TITLE = "Panetones que Vendem · 15 receitas recheadas para lucrar no Natal";
-const DESCRIPTION =
-  "Guia de produção e venda de panetones artesanais: 15 receitas recheadas, embalagem, precificação e scripts de venda. R$ 19,90.";
-
+const TITLE = "Kit Encomendas de Natal — Panetones que Vendem | 15 receitas";
+const DESCRIPTION = "15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF por R$ 19,90.";
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "website" },
-      { property: "og:locale", content: "pt_BR" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESCRIPTION },
-    ],
-  }),
-  component: Index,
+  head: () => ({ meta: [
+    { title: TITLE }, { name: "description", content: DESCRIPTION },
+    { property: "og:title", content: TITLE }, { property: "og:description", content: DESCRIPTION },
+    { property: "og:type", content: "website" }, { property: "og:locale", content: "pt_BR" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: TITLE }, { name: "twitter:description", content: DESCRIPTION },
+  ] }), component: Index,
 });
 
 type AssetPointer = { url: string };
-const recipePhotos = import.meta.glob<AssetPointer>("../assets/cardapio/*.jpg.asset.json", {
+const recipePhotos = import.meta.glob<AssetPointer>("../assets/cardapio-webp/*.webp.asset.json", {
   eager: true,
   import: "default",
 });
 const photoFor = (n: number) => {
-  const prefix = `../assets/cardapio/${String(n).padStart(2, "0")}-`;
+  const prefix = `../assets/cardapio-webp/${String(n).padStart(2, "0")}-`;
   const key = Object.keys(recipePhotos).find((k) => k.startsWith(prefix));
   return key ? (recipePhotos[key]?.url ?? "") : "";
 };
@@ -63,407 +51,110 @@ const RECEITAS: { nome: string; tier: Tier }[] = [
   { nome: "Panetone de Brigadeiro Cremoso", tier: "pre" },
 ];
 
-const PARTES = [
-  {
-    n: "PARTE 1",
-    t: "Produção",
-    d: "Ingredientes, equipamentos, a massa clássica passo a passo, a massa de chocolate, recheios, coberturas e os erros mais comuns.",
-  },
-  {
-    n: "PARTE 2",
-    t: "As 15 receitas",
-    d: "Do banoffee ao brigadeiro cremoso, cada uma com ficha completa, ponto de atenção, validade e dica de venda.",
-  },
-  {
-    n: "PARTE 3",
-    t: "Apresentação",
-    d: "Três níveis de embalagem, fotos que dão água na boca com o celular, validade e o que vai na etiqueta.",
-  },
-  {
-    n: "PARTE 4",
-    t: "Venda",
-    d: "Custo real, preço com margem, onde vender, scripts prontos e como organizar a produção em escala.",
-  },
+const BENEFITS = [
+  "15 receitas completas de panetones recheados.",
+  "Massa base explicada passo a passo.",
+  "3 técnicas de montagem e recheio.",
+  "Dicas de embalagens e conservação.",
+  "Planilha para calcular custos e preços.",
+  "Mensagens prontas para divulgar pelo WhatsApp.",
 ];
-
-function Ico({ children }: { children: ReactNode }) {
-  return (
-    <div className="ico">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 48 48"
-        width="30"
-        height="30"
-        aria-hidden="true"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {children}
-      </svg>
-    </div>
-  );
-}
-
-const EXTRAS: { icon: ReactNode; t: string; d: string }[] = [
-  {
-    icon: (
-      <>
-        <path d="M8 18l16 -8 16 8v18l-16 8 -16 -8z" />
-        <path d="M8 18l16 8 16 -8M24 26v18" />
-      </>
-    ),
-    t: "Embalagem que vende",
-    d: "Três níveis para três faixas de preço.",
-  },
-  {
-    icon: (
-      <>
-        <rect x="6" y="14" width="36" height="24" rx="3" />
-        <circle cx="24" cy="26" r="7" />
-        <path d="M17 14l3 -5h8l3 5" />
-      </>
-    ),
-    t: "Fotos com celular",
-    d: "A montagem com luz de janela e a foto da fatia que vende sozinha.",
-  },
-  {
-    icon: (
-      <>
-        <circle cx="24" cy="24" r="16" />
-        <path d="M28 18q-4 -3 -8 0t0 6 8 6 0 6 -8 0M24 13v4M24 31v4" />
-      </>
-    ),
-    t: "Custo e preço",
-    d: "A fórmula da margem, com um exemplo resolvido passo a passo.",
-  },
-  {
-    icon: <path d="M8 12h32v20H20l-8 7v-7H8z" />,
-    t: "Scripts de venda",
-    d: "Lançamento, follow-up, fechamento, empresas e pós-venda.",
-  },
-  {
-    icon: (
-      <>
-        <rect x="8" y="10" width="32" height="30" rx="3" />
-        <path d="M8 18h32M16 6v8M32 6v8" />
-      </>
-    ),
-    t: "Plano de produção",
-    d: "Capacidade do forno, semana típica e organização das entregas.",
-  },
-  {
-    icon: (
-      <>
-        <rect x="12" y="6" width="24" height="36" rx="3" />
-        <path d="M12 20h24M17 12v4M17 25v6" />
-      </>
-    ),
-    t: "Validade e etiqueta",
-    d: "Quanto tempo cada recheio dura e o que a etiqueta precisa informar.",
-  },
+const INCLUDED = [
+  { icon: BookOpen, title: "15 receitas completas", text: "Ingredientes e modo de preparo para variar seu cardápio." },
+  { icon: ChefHat, title: "Massa base passo a passo", text: "Da escolha dos ingredientes ao preparo da massa." },
+  { icon: Layers, title: "3 técnicas de recheio e montagem", text: "Orientações para montar seus panetones recheados." },
+  { icon: Calculator, title: "Planilha de custos e precificação", text: "Organize os custos e calcule o preço dos seus panetones." },
+  { icon: Package, title: "Embalagem e conservação", text: "Cuidados para apresentar e conservar cada receita." },
+  { icon: MessageCircle, title: "Mensagens para WhatsApp", text: "Textos prontos para divulgar e organizar encomendas." },
 ];
-
-const DEPOIMENTOS = [
-  {
-    q: "Eu sempre quis fazer panetones para vender, mas tinha dificuldade em encontrar receitas realmente bonitas e com acabamento profissional. O material me surpreendeu! As receitas são muito bem explicadas e as ideias de sabores são incríveis.",
-    a: "Mariana O.",
-  },
-  {
-    q: "O que mais gostei foi a variedade de receitas. São opções que realmente chamam a atenção e ajudam a montar um cardápio diferenciado para o Natal. Valeu muito a pena!",
-    a: "Camila R.",
-  },
-  {
-    q: "Achei o e-book muito completo! Gostei especialmente da apresentação das receitas e das combinações de sabores. Já estou planejando meu cardápio de Natal e o material está me ajudando bastante.",
-    a: "Fernanda C.",
-  },
-];
-
 const FAQ = [
-  {
-    q: "Preciso ter experiência com panetone?",
-    a: "Não. O capítulo 3 explica a massa passo a passo, com o teste do véu e dois cronogramas. A receita mais simples entre as recheadas é indicada para a sua primeira fornada de teste.",
-  },
-  {
-    q: "Como recebo o e-book?",
-    a: "Logo depois da confirmação do pagamento, a Kirvano envia o acesso para o seu e-mail. Você baixa o PDF e lê no celular, no tablet ou no computador.",
-  },
-  {
-    q: "Preciso de batedeira planetária?",
-    a: "Não. Uma batedeira com gancho resolve. O capítulo 2 lista o mínimo para começar e o que ajuda quando o volume cresce.",
-  },
-  {
-    q: "As receitas usam fermento natural?",
-    a: "Não. Todas usam fermento biológico seco pelo método esponja, que é mais previsível para quem está começando. A fermentação natural aparece como próximo nível.",
-  },
-  {
-    q: "O livro ensina a calcular o preço?",
-    a: "Sim. A Parte 4 mostra como somar ingredientes, embalagem, gás e a sua hora de trabalho, e como aplicar a margem. Cada receita tem um quadro de custo para você preencher.",
-  },
-  {
-    q: "Posso vender os panetones que fizer?",
-    a: "Sim, esse é o objetivo do guia. O capítulo 9 orienta sobre validade, etiqueta e a consulta à vigilância sanitária do seu município.",
-  },
+  { q: "Como recebo o material?", a: "O acesso ao material é liberado após a confirmação da compra. Siga as instruções apresentadas pela plataforma de pagamento para acessar seu PDF." },
+  { q: "O produto é físico ou digital?", a: "É um material digital em PDF. Nenhum produto físico é enviado." },
+  { q: "Preciso ter experiência com confeitaria?", a: "Não. A massa base é explicada passo a passo, com receitas e orientações para quem está começando." },
+  { q: "Quantas receitas estão incluídas?", a: "São 15 receitas de panetones recheados, além dos materiais complementares de montagem, embalagem, custos e divulgação." },
+  { q: "Posso acessar pelo celular?", a: "Sim. Você pode ler o PDF no celular, tablet ou computador com um leitor de PDF." },
+  { q: "O pagamento é feito em ambiente seguro?", a: "O botão direciona para o checkout externo da Celetus por uma conexão HTTPS. As opções de pagamento e condições são apresentadas lá; esta página não coleta seus dados de pagamento." },
 ];
-
-function useCheckoutUrl() {
-  const [url, setUrl] = useState(CHECKOUT_URL);
-  useEffect(() => {
-    setUrl(buildCheckoutUrl(window.location.search));
-  }, []);
-  return url;
-}
 
 function Index() {
-  const checkout = useCheckoutUrl();
+  const [checkout, setCheckout] = useState(CHECKOUT_URL);
+  const leaving = useRef(false);
+  useEffect(() => { setCheckout(buildCheckoutUrl(window.location.search)); }, []);
   useEffect(() => startMetaPixel(), []);
-  const cta = (
-    <a className="cta" href={checkout}>
-      Quero o meu por R$ 19,90
-    </a>
-  );
+  const onCheckout = async (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) { void trackCheckout(); return; }
+    event.preventDefault();
+    if (leaving.current) return;
+    leaving.current = true;
+    // Bound the measurement wait: a blocked SDK must never block a purchase.
+    await Promise.race([trackCheckout().catch(() => {}), new Promise(resolve => setTimeout(resolve, 300))]);
+    window.location.assign(buildCheckoutUrl(window.location.search));
+  };
+  const cta = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta">
+    <a href={checkout} onClick={onCheckout}>{text}<ArrowRight size={20} aria-hidden="true" /></a>
+  </Button>;
 
-  return (
-    <>
-      <header className="hero">
-        <div className="wrap">
-          <div>
-            <p className="dor">Cansada de trabalhar no Natal e ver o dinheiro evaporar com ingredientes caros?</p>
-            <div className="kicker">Guia de produção e venda · Natal 2026</div>
-            <h1>Panetones que Vendem</h1>
-            <p className="sub">
-              15 receitas recheadas para fazer, apresentar e lucrar neste Natal, mesmo começando do zero.
-            </p>
-            <ul>
-              <li>Uma massa base que vira 15 produtos diferentes</li>
-              <li>Embalagem, fotos com celular e etiqueta</li>
-              <li>Como calcular o custo e definir o preço com lucro</li>
-              <li>Mensagens prontas para vender pelo WhatsApp</li>
-            </ul>
-            {cta}
-            <div className="nota">E-book em PDF · Acesso imediato após a compra </div>
-          </div>
-          <div className="ill">
-            <img
-              src={heroImg.url}
-              className="hero-ill hero-photo"
-              width={800}
-              height={1000}
-              alt="Panetone com cobertura de chocolate"
-              fetchPriority="high"
-            />
-          </div>
+  return <>
+    <header className="hero">
+      <div className="wrap">
+        <div className="hero-copy">
+          <div className="kicker">🎄 GUIA DE PRODUÇÃO E VENDA — NATAL 2026</div>
+          <p className="product-name">Kit Encomendas de Natal · Panetones que Vendem</p>
+          <h1>Aprenda a Fazer 15 Panetones Recheados para o Natal!</h1>
+          <p className="sub">Receitas completas, técnicas de recheio e orientações para você preparar seus panetones e organizar suas encomendas, mesmo começando do zero.</p>
+          <ul className="hero-benefits">{BENEFITS.map(text => <li key={text}><Check size={18} aria-hidden="true" />{text}</li>)}</ul>
+          <p className="hero-price">Acesso ao material completo por <strong>R$ 19,90.</strong></p>
+          {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
+          <div className="nota"><span><FileText size={16} aria-hidden="true" />Material digital em PDF</span><span><Zap size={16} aria-hidden="true" />Acesso após a confirmação da compra</span></div>
         </div>
-      </header>
-
-      <main>
-        <section className="galeria-sec">
-          <div className="wrap">
-            <h2>O tipo de panetone que você vai aprender a fazer</h2>
-            <div className="galeria">
-              <img src={galFatia.url} width={600} height={600} loading="lazy" alt="Fatia de panetone caseiro" />
-              <img src={galNozes.url} width={600} height={600} loading="lazy" alt="Panetone cortado com nozes" />
-              <img
-                src={galChocBranco.url}
-                width={600}
-                height={600}
-                loading="lazy"
-                alt="Panetone com chocolate branco"
-              />
-              <img
-                src={galEmbalado.url}
-                width={600}
-                height={600}
-                loading="lazy"
-                alt="Panetone embalado para presente"
-              />
-            </div>
-            <div className="galeria-nota">Imagens ilustrativas</div>
-          </div>
-        </section>
-
-        <section className="sec">
-          <div className="wrap">
-            <div className="kicker">Não é só um livro de receitas</div>
-            <h2>Do primeiro panetone à última entrega do dia 24</h2>
-            <p className="lead">
-              O Natal é a época em que todo mundo procura panetone, para a ceia, para presentear e para levar ao
-              trabalho. Este guia mostra como produzir com padrão, apresentar com cara de loja e cobrar um preço que
-              paga o seu trabalho.
-            </p>
-            <div className="grid4">
-              {PARTES.map((p) => (
-                <div className="card" key={p.n}>
-                  <div className="num">{p.n}</div>
-                  <h3>{p.t}</h3>
-                  <p>{p.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="sec creme">
-          <div className="wrap">
-            <div className="kicker">O cardápio completo</div>
-            <h2>15 panetones recheados para o seu cardápio</h2>
-            <p className="lead">
-              Todos partem de duas massas e de oito recheios base. Você aprende uma técnica e varia, sem precisar
-              dominar quinze receitas diferentes.
-            </p>
-            <ul className="rcs">
-              {RECEITAS.map((r, i) => (
-                <li className="rc" key={r.nome}>
-                  <div className="rc-svg">
-                    <img src={photoFor(i + 1)} alt={r.nome} width={400} height={400} loading="lazy" />
-                  </div>
-                  <span className="rc-n">{String(i + 1).padStart(2, "0")}</span>
-                  <b>{r.nome}</b>
-                  <span className={`tag t-${r.tier}`}>{TIER_LABEL[r.tier]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section className="sec">
-          <div className="wrap duo">
-            <div>
-              <div className="kicker">Para quem é</div>
-              <h2>Feito para você que…</h2>
-              <ul className="check">
-                <li>Já cozinha em casa e quer uma renda extra no fim de ano</li>
-                <li>É confeiteira e quer acrescentar panetone ao cardápio</li>
-                <li>Já faz panetone, mas não sabe quanto lucra em cada um</li>
-                <li>Quer presentear com algo feito à mão e com cara de loja</li>
-              </ul>
-            </div>
-            <div>
-              <div className="kicker">O que vem dentro</div>
-              <h2>Um guia completo</h2>
-              <ul className="check">
-                <li>139 páginas em formato pensado para o celular</li>
-                <li>Fichas com rendimento, tempo, nível e validade</li>
-                <li>Plano de 6 semanas até a ceia</li>
-                <li>Tabela de custo, checklist, lista de compras e calendário de dezembro</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className="sec creme">
-          <div className="wrap">
-            <div className="kicker">Além das receitas</div>
-            <h2>Tudo o que vem depois do forno</h2>
-            <div className="dentro">
-              {EXTRAS.map((e) => (
-                <div className="item" key={e.t}>
-                  <Ico>{e.icon}</Ico>
-                  <div>
-                    <b>{e.t}</b>
-                    <span>{e.d}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="sec">
-          <div className="wrap">
-            <div className="kicker">Quem já leu</div>
-            <h2>O que as primeiras leitoras disseram</h2>
-            <div className="depo">
-              {DEPOIMENTOS.map((d) => (
-                <figure key={d.a}>
-                  <blockquote>{d.q}</blockquote>
-                  <figcaption>{d.a}</figcaption>
-                </figure>
-              ))}
-            </div>
-            <p className="depo-nota">Opiniões de leitoras que conheceram o material antes do lançamento.</p>
-          </div>
-        </section>
-
-        <section className="sec oferta" id="oferta">
-          <div className="wrap">
-            <div className="box">
-              <div className="kicker">Acesso imediato</div>
-              <h2>Panetones que Vendem</h2>
-              <div className="preco">
-                <small>R$</small>19,90
-              </div>
-              <div className="preco-nota">pagamento único</div>
-              <ul className="check">
-                <li>E-book completo em PDF, 139 páginas</li>
-                <li>15 receitas recheadas com ficha técnica</li>
-                <li>Guia de embalagem, preço e venda</li>
-                <li>Tabelas e checklists para imprimir</li>
-              </ul>
-              {cta}
-              <div className="bump"></div>
-              <div className="garantia">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 48 48"
-                  width="34"
-                  height="34"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="24" cy="24" r="17" />
-                  <path d="M16 24l6 6 11 -12" />
-                </svg>
-                <span>
-                  <b>7 dias de garantia.</b> Se o guia não for para você, peça o reembolso pela Kirvano em até 7 dias
-                  após a compra.
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="sec faq">
-          <div className="wrap faq-wrap">
-            <div className="kicker">Dúvidas</div>
-            <h2>Perguntas frequentes</h2>
-            {FAQ.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className="sec final">
-          <div className="wrap">
-            <h2>O Natal já começou nas encomendas</h2>
-            <p>
-              Quem se organiza em novembro chega a dezembro com o cardápio pronto, o preço calculado e os primeiros
-              pedidos fechados.
-            </p>
-            {cta}
-          </div>
-        </section>
-      </main>
-
-      <footer className="rodape">
-        <div className="wrap">
-          <PixelPrivacy />
-        </div>
-      </footer>
-      <div className="cta-fixo">
-        <a className="cta" href="#oferta">
-          Garantir o meu por R$ 19,90
-        </a>
+        <div className="ill"><img src={heroImg.url} className="hero-ill hero-photo" width={1152} height={768} alt="Panetone cortado com recheio cremoso de chocolate e uma fatia em destaque" fetchPriority="high" /></div>
       </div>
-    </>
-  );
+    </header>
+    <main>
+      <section className="galeria-sec">
+        <div className="wrap">
+          <div className="kicker">Um Natal com mais sabor</div>
+          <h2>Conheça alguns dos 15 sabores que você vai aprender!</h2>
+          <div className="galeria">{[15, 7, 2, 5, 1, 4].map(n => {
+            const recipe = RECEITAS[n - 1];
+            if (!recipe) return null;
+            return <figure key={n}><img src={photoFor(n)} width={640} height={640} loading="lazy" alt={recipe.nome} /><figcaption>{recipe.nome.replace("Panetone de ", "")}</figcaption></figure>;
+          })}</div>
+          <p className="gallery-caption">E esses são apenas alguns dos 15 sabores disponíveis no material!</p>
+        </div>
+      </section>
+      <section className="sec creme">
+        <div className="wrap">
+          <div className="kicker">Seu kit completo</div>
+          <h2>Muito mais que um simples livro de receitas!</h2>
+          <div className="dentro">{INCLUDED.map(({ icon: Icon, title, text }) => <div className="item" key={title}><div className="ico"><Icon size={24} aria-hidden="true" /></div><div><b>{title}</b><span>{text}</span></div></div>)}</div>
+          <div className="section-cta">{cta()}<p>15 receitas + materiais complementares · R$ 19,90</p></div>
+        </div>
+      </section>
+      <section className="sec">
+        <div className="wrap">
+          <div className="kicker">O cardápio completo</div>
+          <h2>15 panetones recheados para o seu cardápio</h2>
+          <p className="lead">Combinações clássicas e especiais para você escolher os sabores das suas encomendas de Natal.</p>
+          <ul className="rcs">{RECEITAS.map((r, i) => <li className="rc" key={r.nome}><div className="rc-svg"><img src={photoFor(i + 1)} alt={r.nome} width={640} height={640} loading="lazy" /></div><span className="rc-n">{String(i + 1).padStart(2, "0")}</span><b>{r.nome}</b><span className={`tag t-${r.tier}`}>{TIER_LABEL[r.tier]}</span></li>)}</ul>
+        </div>
+      </section>
+      <section className="sec creme">
+        <div className="wrap duo">
+          <div><div className="kicker">Para quem é</div><h2>Seu próximo cardápio começa aqui</h2><ul className="check"><li>Para quem cozinha em casa e quer começar a fazer encomendas</li><li>Para confeiteiras que querem ampliar o cardápio de Natal</li><li>Para quem quer organizar custos, apresentação e divulgação</li></ul></div>
+          <div><div className="kicker">Do preparo à encomenda</div><h2>Receitas e organização no mesmo kit</h2><p className="lead">Prepare a massa, escolha o recheio e cuide da apresentação. Depois, organize seus custos e divulgue seus sabores com as mensagens do material.</p></div>
+        </div>
+      </section>
+      <section className="sec oferta" id="oferta">
+        <div className="wrap offer-layout">
+          <div><div className="kicker">Seu cardápio de Natal</div><h2>Tenha acesso às 15 receitas e prepare seu cardápio de Natal!</h2><p className="offer-product">Kit Encomendas de Natal</p><p>Panetones que Vendem<br />15 receitas recheadas + materiais complementares.</p><ul className="check"><li>Massa base e técnicas de montagem</li><li>Custos, embalagem e conservação</li><li>Mensagens para divulgar pelo WhatsApp</li></ul></div>
+          <div className="offer-action"><div className="preco"><small>R$</small>19,90</div><div className="preco-nota">pagamento único</div>{cta()}<p className="offer-note">Material digital em PDF.<br />Acesso após a confirmação da compra.</p><p className="checkout-note"><ShieldCheck size={18} aria-hidden="true" />Pagamento no checkout da Celetus</p></div>
+        </div>
+      </section>
+      <section className="sec faq"><div className="wrap faq-wrap"><div className="kicker">Antes de começar</div><h2>Perguntas frequentes</h2>{FAQ.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></section>
+      <section className="sec final"><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>{cta()}<div className="nota">R$ 19,90 · Material em PDF</div></div></section>
+    </main>
+    <footer className="rodape"><div className="wrap"><p>Kit Encomendas de Natal — Panetones que Vendem</p><PixelPrivacy /></div></footer>
+    <div className="cta-fixo">{cta("Quero meu kit — R$ 19,90")}</div>
+  </>;
 }

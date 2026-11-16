@@ -33,5 +33,7 @@ use the editor.
 
 - The sales page lives at `/` (src/routes/index.tsx); its ported styles are component classes in `src/styles.css` under `@layer components`, driven by brand tokens. Why: keeps the original page's look in one design-system file.
 - Every buy button uses `buildCheckoutUrl` from `src/lib/checkout.ts` (tested in `checkout.test.ts`). Why: ad tracking params must reach the external checkout.
-- Photos are Lovable Assets pointers; the 15 cardápio photos live in `src/assets/cardapio/` named `NN-sabor.jpg.asset.json` and are matched to RECEITAS by the NN prefix. Why: keeps the repo light and each photo tied to its flavor.
+- Photos are Lovable Assets pointers; the original 15 cardápio photos live in `src/assets/cardapio/` and their optimized WebP copies in `src/assets/cardapio-webp/` named `NN-sabor.webp.asset.json` and are matched to RECEITAS by the NN prefix. Why: keeps the repo light and each photo tied to its flavor.
 - Initialize the browser Meta Pixel only through the shared advertising permission gate on the sales route; do not add an unconditional noscript beacon. Why: regional restrictions and refusals must block every transmission, and external checkout clicks are not purchases.
+
+- Use the shared sales Button variant for checkout anchors and gate all Meta events in the shared pixel module; deduplicate product views and checkout initiation per page load. Why: every CTA preserves checkout forwarding and privacy without duplicate reporting.

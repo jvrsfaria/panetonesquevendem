@@ -14,6 +14,16 @@ declare global {
 }
 let initialized = false;
 let pageViewed = false;
+let contentViewed = false;
+let checkoutStarted = false;
+
+export const PRODUCT_DATA = {
+  content_name: "Kit Encomendas de Natal — Panetones que Vendem",
+  content_ids: ["panetones-que-vendem"],
+  content_type: "product",
+  value: 19.9,
+  currency: "BRL",
+};
 
 export async function syncMetaPixel() {
   const permitted = await canTrack("advertising");
@@ -47,6 +57,20 @@ export async function syncMetaPixel() {
     pixel("track", "PageView");
     pageViewed = true;
   }
+  if (!contentViewed) {
+    pixel("track", "ViewContent", PRODUCT_DATA, { eventID: crypto.randomUUID() });
+    contentViewed = true;
+  }
+}
+
+/** Called only by a link that actually leaves for the configured checkout. */
+export async function trackCheckout() {
+  if (checkoutStarted || !(await canTrack("advertising"))) return;
+  await syncMetaPixel();
+  const stillPermitted = await canTrack("advertising");
+  if (checkoutStarted || !stillPermitted || !window.fbq) return;
+  checkoutStarted = true;
+  window.fbq("track", "InitiateCheckout", { ...PRODUCT_DATA, num_items: 1 }, { eventID: crypto.randomUUID() });
 }
 
 export function startMetaPixel() {
