@@ -243,7 +243,7 @@ function Index() {
               <li>Mensagens prontas para vender pelo WhatsApp</li>
             </ul>
             {cta}
-            <div className="nota">E-book em PDF · Acesso imediato após a compra · Feito para ler no celular</div>
+            <div className="nota">E-book em PDF · Acesso imediato após a compra </div>
           </div>
           <div className="ill">
             <img
