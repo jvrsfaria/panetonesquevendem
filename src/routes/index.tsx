@@ -230,6 +230,7 @@ function Index() {
       <header className="hero">
         <div className="wrap">
           <div>
+            <p className="dor">Cansada de trabalhar no Natal e ver o dinheiro evaporar com ingredientes caros?</p>
             <div className="kicker">Guia de produção e venda · Natal 2026</div>
             <h1>Panetones que Vendem</h1>
             <p className="sub">

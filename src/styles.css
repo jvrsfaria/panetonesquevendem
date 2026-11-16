@@ -184,6 +184,7 @@
   /* hero */
   .hero { background: var(--gradient-vinho-hero); color: var(--branco); padding: 56px 0 64px; overflow: hidden; }
   .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+  .hero .dor { margin: 0 0 14px; color: var(--dourado-cl); font-size: 15px; font-weight: 800; line-height: 1.45; }
   .hero .kicker { color: var(--dourado-cl); }
   .hero h1 { font-size: clamp(40px, 6vw, 64px); margin: 14px 0 16px; }
   .hero .sub { font-family: var(--font-serif); font-style: italic; font-size: clamp(19px, 2.4vw, 23px); color: var(--hero-sub); margin: 0 0 28px; }
