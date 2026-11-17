@@ -368,10 +368,9 @@
 
 @keyframes cta-salto {
   0%, 60%, 100% { transform: translateY(0); }
-  70% { transform: translateY(-8px); }
+  70% { transform: translateY(-12px); }
   80% { transform: translateY(0); }
-  88% { transform: translateY(-4px); }
+  88% { transform: translateY(-6px); }
 }
-.cta-salto { animation: cta-salto 2.4s ease-in-out infinite; }
+.cta-salto { animation: cta-salto 2s ease-in-out infinite; }
 .cta-salto:hover { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .cta-salto { animation: none; } }
