@@ -367,11 +367,17 @@
 }
 
 @keyframes cta-salto {
-  0%, 60%, 100% { transform: translateY(0); }
-  70% { transform: translateY(-8px); }
-  80% { transform: translateY(0); }
-  88% { transform: translateY(-4px); }
+  0%, 50%, 100% { transform: translateY(0); }
+  62% { transform: translateY(-16px); }
+  74% { transform: translateY(0); }
+  84% { transform: translateY(-7px); }
+  92% { transform: translateY(0); }
 }
-.cta-salto { animation: cta-salto 2.4s ease-in-out infinite; }
-.cta-salto:hover { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .cta-salto { animation: none; } }
+.cta-salto { animation: cta-salto 1.8s ease-in-out infinite !important; }
+.cta-salto:hover { animation-play-state: paused !important; }
+
+/* Final creative: centered copy, highlighted price */
+.criativo-preco { flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 14px !important; }
+.criativo-nota { text-align: center; }
+.criativo-valor { display: inline-block; background: var(--dourado-cl); color: var(--vinho) !important; padding: 10px 34px; border-radius: 999px; box-shadow: var(--shadow-cta); font-size: 72px !important; }
+@media (max-width: 860px) { .criativo-valor { font-size: 56px !important; padding: 8px 26px; } }
