@@ -107,7 +107,7 @@ export function Index() {
   const cta = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta">
     <a href={`#${OFFER_ID}`} onClick={scrollToOffer}>{text}<ArrowRight size={20} aria-hidden="true" /></a>
   </Button>;
-  const ctaCheckout = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta">
+  const ctaCheckout = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta cta-salto">
     <a href={checkout} onClick={onCheckout}>{text}<ArrowRight size={20} aria-hidden="true" /></a>
   </Button>;
 
@@ -169,7 +169,7 @@ export function Index() {
         </div>
       </section>
       <section className="sec faq"><div className="wrap faq-wrap"><div className="kicker">Antes de começar</div><h2>Perguntas frequentes</h2>{FAQ.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></section>
-      <section className="sec final" id={OFFER_ID}><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p><div className="criativo"><div className="criativo-fotos">{CRIATIVO_FOTOS.map(n => <img key={n} src={photoFor(n)} width={320} height={320} loading="lazy" alt={RECEITAS[n - 1]?.nome ?? "Panetone recheado"} />)}</div><div className="criativo-preco"><div><span>Kit Encomendas de Natal</span><small>15 receitas + materiais complementares</small></div><b className="criativo-valor"><small>R$</small>19,90</b></div><p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p></div>{ctaCheckout()}</div></section>
+      <section className="sec final" id={OFFER_ID}><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p><div className="criativo"><div className="criativo-fotos">{CRIATIVO_FOTOS.map(n => <img key={n} src={photoFor(n)} width={320} height={320} loading="lazy" alt={RECEITAS[n - 1]?.nome ?? "Panetone recheado"} />)}</div><div className="criativo-preco"><div><span>Kit Encomendas de Natal</span><small>15 receitas + materiais complementares</small></div><b className="criativo-valor"><small>R$</small>19,90</b></div><p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p></div>{ctaCheckout("QUERO MEU KIT AGORA!!!!")}</div></section>
     </main>
     <footer className="rodape"><div className="wrap"><p>Kit Encomendas de Natal — Panetones que Vendem</p><PixelPrivacy /></div></footer>
     <div className="cta-fixo">{cta("Quero meu kit — R$ 19,90")}</div>
