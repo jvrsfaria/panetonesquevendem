@@ -32,7 +32,7 @@ use the editor.
 ## Project rules
 
 - The sales page lives at `/` (src/routes/index.tsx); its ported styles are component classes in `src/styles.css` under `@layer components`, driven by brand tokens. Why: keeps the original page's look in one design-system file.
-- Every buy button uses `buildCheckoutUrl` from `src/lib/checkout.ts` (tested in `checkout.test.ts`). Why: ad tracking params must reach the external checkout.
+- Only the final offer button (`#comprar`) links out to checkout, built with `buildCheckoutUrl` from `src/lib/checkout.ts`; every CTA above it scrolls to that section instead of leaving the page (tested in `src/test/sales-cta.test.tsx`). Why: ad tracking params must still reach the external checkout, and the page funnel must end at one decision point.
 - Photos are Lovable Assets pointers; the original 15 cardápio photos live in `src/assets/cardapio/` and their optimized WebP copies in `src/assets/cardapio-webp/` named `NN-sabor.webp.asset.json` and are matched to RECEITAS by the NN prefix. Why: keeps the repo light and each photo tied to its flavor.
 - Initialize the browser Meta Pixel only through the shared advertising permission gate on the sales route; do not add an unconditional noscript beacon. Why: regional restrictions and refusals must block every transmission, and external checkout clicks are not purchases.
 

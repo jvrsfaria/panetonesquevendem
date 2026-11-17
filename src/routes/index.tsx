@@ -33,6 +33,10 @@ const photoFor = (n: number) => {
 type Tier = "ent" | "car" | "pre";
 const TIER_LABEL: Record<Tier, string> = { ent: "Entrada", car: "Carro-chefe", pre: "Premium" };
 
+/** The final section holds the only button that leaves for checkout; every other CTA scrolls here. */
+const OFFER_ID = "comprar";
+const CRIATIVO_FOTOS = [1, 7, 12, 15];
+
 const RECEITAS: { nome: string; tier: Tier }[] = [
   { nome: "Panetone de Chocolate Branco com Frutas Vermelhas", tier: "ent" },
   { nome: "Panetone de Banoffee", tier: "ent" },
@@ -76,7 +80,7 @@ const FAQ = [
   { q: "O pagamento é feito em ambiente seguro?", a: "O botão direciona para o checkout externo da Celetus por uma conexão HTTPS. As opções de pagamento e condições são apresentadas lá; esta página não coleta seus dados de pagamento." },
 ];
 
-function Index() {
+export function Index() {
   const [checkout, setCheckout] = useState(CHECKOUT_URL);
   const leaving = useRef(false);
   useEffect(() => { setCheckout(buildCheckoutUrl(window.location.search)); }, []);
@@ -90,7 +94,20 @@ function Index() {
     await Promise.race([trackCheckout().catch(() => {}), new Promise(resolve => setTimeout(resolve, 300))]);
     window.location.assign(buildCheckoutUrl(window.location.search));
   };
+  // Buttons above the offer only walk the visitor down to the final button.
+  const scrollToOffer = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const target = document.getElementById(OFFER_ID);
+    if (!target) return;
+    event.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    target.querySelector<HTMLAnchorElement>("a.cta")?.focus({ preventScroll: true });
+  };
   const cta = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta">
+    <a href={`#${OFFER_ID}`} onClick={scrollToOffer}>{text}<ArrowRight size={20} aria-hidden="true" /></a>
+  </Button>;
+  const ctaCheckout = (text = "QUERO MEU KIT AGORA!") => <Button asChild variant="sales" className="cta">
     <a href={checkout} onClick={onCheckout}>{text}<ArrowRight size={20} aria-hidden="true" /></a>
   </Button>;
 
@@ -152,7 +169,7 @@ function Index() {
         </div>
       </section>
       <section className="sec faq"><div className="wrap faq-wrap"><div className="kicker">Antes de começar</div><h2>Perguntas frequentes</h2>{FAQ.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></section>
-      <section className="sec final"><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>{cta()}<div className="nota">R$ 19,90 · Material em PDF</div></div></section>
+      <section className="sec final" id={OFFER_ID}><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>{ctaCheckout()}<div className="criativo"><div className="criativo-fotos">{CRIATIVO_FOTOS.map(n => <img key={n} src={photoFor(n)} width={320} height={320} loading="lazy" alt={RECEITAS[n - 1]?.nome ?? "Panetone recheado"} />)}</div><div className="criativo-preco"><div><span>Kit Encomendas de Natal</span><small>15 receitas + materiais complementares</small></div><b className="criativo-valor"><small>R$</small>19,90</b></div><p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p></div></div></section>
     </main>
     <footer className="rodape"><div className="wrap"><p>Kit Encomendas de Natal — Panetones que Vendem</p><PixelPrivacy /></div></footer>
     <div className="cta-fixo">{cta("Quero meu kit — R$ 19,90")}</div>
