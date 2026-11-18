@@ -45,12 +45,12 @@ describe("Sales page CTA flow", () => {
     expect(document.activeElement?.getAttribute("href")).toBe(CHECKOUT_URL);
   });
 
-  it("shows the panetone creative with the price right before the final button", () => {
+  it("shows the final button right before the panetone creative with the price", () => {
     render(<Index />);
     const creative = document.querySelector(".criativo");
     const button = document.querySelector("#comprar a.cta");
-    expect(creative).not.toBeNull();
-    expect((creative?.compareDocumentPosition(button!) ?? 0) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(button).not.toBeNull();
+    expect((button?.compareDocumentPosition(creative!) ?? 0) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(creative?.textContent).toContain("19,90");
     expect(creative?.querySelectorAll("img")).toHaveLength(4);
   });
