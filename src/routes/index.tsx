@@ -133,7 +133,6 @@ export function Index() {
   const [checkout, setCheckout] = useState(CHECKOUT_URL);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoPlaying, setVideoPlaying] = useState(true);
-  const leaving = useRef(false);
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const respectMotion = () => {
@@ -147,17 +146,9 @@ export function Index() {
     setCheckout(buildCheckoutUrl(window.location.search));
   }, []);
   useEffect(() => startMetaPixel(), []);
-  const onCheckout = async (event: MouseEvent<HTMLAnchorElement>) => {
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
-      void trackCheckout();
-      return;
-    }
-    event.preventDefault();
-    if (leaving.current) return;
-    leaving.current = true;
-    // Bound the measurement wait: a blocked SDK must never block a purchase.
-    await Promise.race([trackCheckout().catch(() => {}), new Promise((resolve) => setTimeout(resolve, 300))]);
-    window.location.assign(buildCheckoutUrl(window.location.search));
+  const onCheckout = () => {
+    // Keep native link navigation in the tap gesture; measurement must never block checkout.
+    void trackCheckout().catch(() => {});
   };
   // Buttons above the offer only walk the visitor down to the final button.
   const scrollToOffer = (event: MouseEvent<HTMLAnchorElement>) => {

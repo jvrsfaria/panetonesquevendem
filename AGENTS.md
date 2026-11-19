@@ -38,3 +38,4 @@ use the editor.
 - Initialize the browser Meta Pixel only through the shared advertising permission gate on the sales route; do not add an unconditional noscript beacon. Why: regional restrictions and refusals must block every transmission, and external checkout clicks are not purchases.
 
 - Use the shared sales Button variant for checkout anchors and gate all Meta events in the shared pixel module; deduplicate product views and checkout initiation per page load. Why: every CTA preserves checkout forwarding and privacy without duplicate reporting.
+- Keep checkout navigation native to the anchor; never prevent it or await advertising measurement. Why: mobile taps and repeat visits must work even when tracking is blocked or pending.
