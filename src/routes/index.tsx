@@ -207,9 +207,8 @@ export function Index() {
               ))}
             </ul>
             <p className="hero-price">
-              Acesso ao material completo por <strong>R$ 19,90.</strong>
+              Acesso ao material completo somente hoje por <strong>R$ 19,90.</strong>
             </p>{" "}
-            Somente hoje!!!
             {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
             <div className="nota">
               <span>
