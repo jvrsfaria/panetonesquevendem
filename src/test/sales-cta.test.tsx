@@ -45,13 +45,12 @@ describe("Sales page CTA flow", () => {
     expect(document.activeElement?.getAttribute("href")).toBe(CHECKOUT_URL);
   });
 
-  it("shows the final button right before the panetone creative with the price", () => {
+  it("keeps the checkout before the panetone creative", () => {
     render(<Index />);
     const creative = document.querySelector(".criativo");
     const button = document.querySelector("#comprar a.cta");
-    expect(button).not.toBeNull();
-    expect((button?.compareDocumentPosition(creative!) ?? 0) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(creative?.textContent).toContain("19,90");
+    if (!button || !creative) throw new Error("Missing final offer");
+    expect(button.compareDocumentPosition(creative) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(creative?.querySelectorAll("img")).toHaveLength(4);
   });
 });

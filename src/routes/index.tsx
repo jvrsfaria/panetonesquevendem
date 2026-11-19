@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
-import { ArrowRight, BookOpen, ChefHat, Layers, Calculator, Package, MessageCircle, FileText, Zap, Check, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, ChefHat, Layers, Calculator, Package, MessageCircle, FileText, Zap, Check, ShieldCheck, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CHECKOUT_URL, buildCheckoutUrl } from "@/lib/checkout";
 import { startMetaPixel, trackCheckout } from "@/lib/meta-pixel";
 import { PixelPrivacy } from "@/components/PixelPrivacy";
-import heroImg from "@/assets/panetone-recheado.webp.asset.json";
+import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
 
 const TITLE = "Kit Encomendas de Natal — Panetones que Vendem | 15 receitas";
 const DESCRIPTION = "15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF por R$ 19,90.";
@@ -82,7 +82,16 @@ const FAQ = [
 
 export function Index() {
   const [checkout, setCheckout] = useState(CHECKOUT_URL);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoPlaying, setVideoPlaying] = useState(true);
   const leaving = useRef(false);
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const respectMotion = () => { if (motion.matches) videoRef.current?.pause(); };
+    respectMotion();
+    motion.addEventListener("change", respectMotion);
+    return () => motion.removeEventListener("change", respectMotion);
+  }, []);
   useEffect(() => { setCheckout(buildCheckoutUrl(window.location.search)); }, []);
   useEffect(() => startMetaPixel(), []);
   const onCheckout = async (event: MouseEvent<HTMLAnchorElement>) => {
@@ -124,7 +133,15 @@ export function Index() {
           {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
           <div className="nota"><span><FileText size={16} aria-hidden="true" />Material digital em PDF</span><span><Zap size={16} aria-hidden="true" />Acesso após a confirmação da compra</span></div>
         </div>
-        <div className="ill"><img src={heroImg.url} className="hero-ill hero-photo" width={1152} height={768} alt="Panetone cortado com recheio cremoso de chocolate e uma fatia em destaque" fetchPriority="high" /></div>
+        <div className="ill hero-video-wrap">
+          <video ref={videoRef} src={heroVideo.url} className="hero-ill hero-video" width={720} height={1280} autoPlay muted loop playsInline preload="auto" aria-label="Vídeo de panetone" onPlay={() => setVideoPlaying(true)} onPause={() => setVideoPlaying(false)} />
+          <Button variant="secondary" size="icon" className="hero-video-toggle" aria-label={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} title={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} onClick={() => {
+            const video = videoRef.current;
+            if (!video) return;
+            if (video.paused) void video.play().catch(() => setVideoPlaying(false));
+            else video.pause();
+          }}>{videoPlaying ? <Pause size={18} /> : <Play size={18} />}</Button>
+        </div>
       </div>
     </header>
     <main>
@@ -169,7 +186,7 @@ export function Index() {
         </div>
       </section>
       <section className="sec faq"><div className="wrap faq-wrap"><div className="kicker">Antes de começar</div><h2>Perguntas frequentes</h2>{FAQ.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div></section>
-      <section className="sec final" id={OFFER_ID}><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>{ctaCheckout("QUERO MEU KIT AGORA!!!!")}<div className="criativo"><div className="criativo-fotos">{CRIATIVO_FOTOS.map(n => <img key={n} src={photoFor(n)} width={320} height={320} loading="lazy" alt={RECEITAS[n - 1]?.nome ?? "Panetone recheado"} />)}</div><div className="criativo-preco"><div><span>Kit Encomendas de Natal</span><small>15 receitas + materiais complementares</small></div><b className="criativo-valor"><small>R$</small>19,90</b></div><p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p></div></div></section>
+      <section className="sec final" id={OFFER_ID}><div className="wrap"><h2>Escolha os sabores do seu Natal</h2><p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>{ctaCheckout("QUERO MEU KIT AGORA POR R$ 19,90!!!!")}<div className="criativo"><div className="criativo-fotos">{CRIATIVO_FOTOS.map(n => <img key={n} src={photoFor(n)} width={320} height={320} loading="lazy" alt={RECEITAS[n - 1]?.nome ?? "Panetone recheado"} />)}</div><div className="criativo-preco"><div><span>Kit Encomendas de Natal</span><small>15 receitas + materiais complementares</small></div></div><p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p></div></div></section>
     </main>
     <footer className="rodape"><div className="wrap"><p>Kit Encomendas de Natal — Panetones que Vendem</p><PixelPrivacy /></div></footer>
     <div className="cta-fixo">{cta("Quero meu kit — R$ 19,90")}</div>

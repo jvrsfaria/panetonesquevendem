@@ -1,4 +1,6 @@
 # Sales page optimization
+- [x] Move the final creative's real price into the checkout button, preserving its placement and animation.
+- [x] Replace the first photo with the supplied silent looping video and verify desktop/mobile playback.
 - [x] Improve first screen, flavor gallery, included materials, offer, FAQs and mobile checkout.
 - [x] Optimize supplied images without changing flavor correspondence.
 - [x] Extend permission-gated Pixel with ViewContent and checkout clicks; never emit Purchase here.
