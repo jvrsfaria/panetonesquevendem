@@ -14,19 +14,12 @@ vi.mock("@tanstack/react-router", async (importOriginal) => {
 import { CHECKOUT_URL } from "@/lib/checkout";
 import { Index } from "@/routes/index";
 
-vi.mock("@/lib/meta-pixel", () => ({
-  startMetaPixel: () => () => {},
-  trackCheckout: vi.fn(),
-}));
-
-import { trackCheckout } from "@/lib/meta-pixel";
+vi.mock("@/lib/utmify-pixel", () => ({ startUtmifyPixel: () => () => {} }));
 
 const ctaLinks = () => Array.from(document.querySelectorAll<HTMLAnchorElement>("a.cta"));
 let scrolled: Element[] = [];
 
 beforeEach(() => {
-  vi.mocked(trackCheckout).mockReset();
-  vi.mocked(trackCheckout).mockResolvedValue(undefined);
   scrolled = [];
   Element.prototype.scrollIntoView = function (this: Element) {
     scrolled.push(this);
@@ -34,10 +27,7 @@ beforeEach(() => {
 });
 
 describe("Sales page CTA flow", () => {
-  it.each(["pending", "rejected"])("allows native checkout navigation when measurement is %s", (state) => {
-    vi.mocked(trackCheckout).mockImplementation(() => state === "pending"
-      ? new Promise<void>(() => {})
-      : Promise.reject(new Error("Measurement unavailable")));
+  it("allows native checkout navigation without an advertising callback", () => {
     render(<Index />);
     const button = document.querySelector<HTMLAnchorElement>("#comprar a.cta");
     if (!button) throw new Error("Missing checkout button");
@@ -45,7 +35,6 @@ describe("Sales page CTA flow", () => {
     button.dispatchEvent(click);
     expect(click.defaultPrevented).toBe(false);
     expect(button.href).toBe(CHECKOUT_URL);
-    expect(trackCheckout).toHaveBeenCalledTimes(1);
   });
 
   it("keeps one checkout button and points every other button at it", () => {

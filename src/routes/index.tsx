@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CHECKOUT_URL, buildCheckoutUrl } from "@/lib/checkout";
-import { startMetaPixel, trackCheckout } from "@/lib/meta-pixel";
+import { startUtmifyPixel } from "@/lib/utmify-pixel";
 import { startUtmify } from "@/lib/utmify";
 import { PixelPrivacy } from "@/components/PixelPrivacy";
 import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
@@ -146,12 +146,8 @@ export function Index() {
   useEffect(() => {
     setCheckout(buildCheckoutUrl(window.location.search));
   }, []);
-  useEffect(() => startMetaPixel(), []);
+  useEffect(() => startUtmifyPixel(), []);
   useEffect(() => startUtmify(), []);
-  const onCheckout = () => {
-    // Keep native link navigation in the tap gesture; measurement must never block checkout.
-    void trackCheckout().catch(() => {});
-  };
   // Buttons above the offer only walk the visitor down to the final button.
   const scrollToOffer = (event: MouseEvent<HTMLAnchorElement>) => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
@@ -172,7 +168,7 @@ export function Index() {
   );
   const ctaCheckout = (text = "QUERO MEU KIT AGORA!") => (
     <Button asChild variant="sales" className="cta cta-salto">
-      <a href={checkout} onClick={onCheckout}>
+      <a href={checkout}>
         {text}
         <ArrowRight size={20} aria-hidden="true" />
       </a>
