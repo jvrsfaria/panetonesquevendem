@@ -39,3 +39,4 @@ use the editor.
 
 - Use the shared sales Button variant for checkout anchors and gate all Meta events in the shared pixel module; deduplicate product views and checkout initiation per page load. Why: every CTA preserves checkout forwarding and privacy without duplicate reporting.
 - Keep checkout navigation native to the anchor; never prevent it or await advertising measurement. Why: mobile taps and repeat visits must work even when tracking is blocked or pending.
+- Load the supplied UTMify URL and attributes through the advertising permission gate in the sales effect; reload on refusal after loading. Why: the vendor preserves campaign attribution but has no teardown for its observers and timers.

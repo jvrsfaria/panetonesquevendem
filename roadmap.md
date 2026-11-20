@@ -1,4 +1,5 @@
 # Sales page optimization
+- [x] Install supplied UTMify script with its attributes; verified mobile native checkout navigation with UTMs (intercepted destination), return-visit attribution and refusal blocking.
 - [x] Fix mobile checkout taps without changing the button's text, size or animation; user confirmed Kiwify and mobile tap opens its payment form.
 - [x] Move the final creative's real price into the checkout button, preserving its placement and animation.
 - [x] Replace the first photo with the supplied silent looping video and verify desktop/mobile playback.

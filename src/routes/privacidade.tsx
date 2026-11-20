@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 const title = "Privacidade · Panetones que Vendem";
-const description = "Informações sobre cookies publicitários, Meta Pixel e suas escolhas de privacidade.";
+const description = "Informações sobre cookies publicitários, Meta Pixel, UTMs da UTMify e suas escolhas de privacidade.";
 export const Route = createFileRoute("/privacidade")({
   head: () => ({ meta: [
     { title }, { name: "description", content: description },
@@ -17,6 +17,9 @@ function Privacy() {
     <h2 className="mt-8 text-xl font-semibold">Medição publicitária</h2>
     <p className="mt-4">A página de vendas usa o Meta Pixel para enviar à Meta (Facebook e Instagram) os eventos de visita à página (PageView), visualização do produto (ViewContent) e encaminhamento ao checkout (InitiateCheckout). Inclui o nome do produto, preço e moeda, e pode compartilhar endereço da página, referência de origem, informações do navegador e dispositivo, endereço IP e identificadores de cookies, como _fbp e _fbc. A Meta pode usar esses dados para mensuração, atribuição, otimização de anúncios e públicos de remarketing, conforme suas próprias políticas.</p>
     <p className="mt-4">Esta instalação não envia dados de formulários para correspondência avançada e não confirma compras. Um clique não é registrado como compra (Purchase). O pagamento acontece na Celetus, que possui suas próprias regras de privacidade.</p>
+    <h2 className="mt-8 text-xl font-semibold">Origem das visitas e UTMify</h2>
+    <p className="mt-4">O script de UTMs da UTMify preserva parâmetros de campanha no navegador por até 7 dias e os acrescenta aos links, incluindo o checkout Kiwify, para identificar a origem das visitas. Ele é carregado somente quando a medição publicitária é permitida pelas escolhas e regras regionais abaixo. Não confirma compras nesta página.</p>
+    <p className="mt-4">Ao recusar depois que o script foi carregado, a página é recarregada para interromper sua execução. A recusa impede novos carregamentos; dados já encaminhados ao checkout não são apagados.</p>
     <h2 className="mt-8 text-xl font-semibold">Suas escolhas</h2>
     <p className="mt-4">Sem autorização publicitária registrada, o pixel não é carregado para visitantes da União Europeia e EEE, Reino Unido, Suíça e Canadá, nem quando a localização não puder ser confirmada. Nas demais regiões, pode funcionar até que você recuse. O sinal Global Privacy Control do navegador também impede a medição publicitária.</p>
     <p className="mt-4">Você pode recusar a qualquer momento pelo botão “Desativar cookies de publicidade” no rodapé da página de vendas. A recusa é salva neste navegador e interrompe novos envios, inclusive em outras abas abertas deste site. Ela não apaga dados já recebidos pela Meta; cookies existentes também podem ser removidos nas configurações do navegador.</p>

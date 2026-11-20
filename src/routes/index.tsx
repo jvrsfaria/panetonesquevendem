@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { CHECKOUT_URL, buildCheckoutUrl } from "@/lib/checkout";
 import { startMetaPixel, trackCheckout } from "@/lib/meta-pixel";
+import { startUtmify } from "@/lib/utmify";
 import { PixelPrivacy } from "@/components/PixelPrivacy";
 import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
 
@@ -146,6 +147,7 @@ export function Index() {
     setCheckout(buildCheckoutUrl(window.location.search));
   }, []);
   useEffect(() => startMetaPixel(), []);
+  useEffect(() => startUtmify(), []);
   const onCheckout = () => {
     // Keep native link navigation in the tap gesture; measurement must never block checkout.
     void trackCheckout().catch(() => {});
