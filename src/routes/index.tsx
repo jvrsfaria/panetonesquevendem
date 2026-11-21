@@ -182,7 +182,7 @@ export function Index() {
           <div className="hero-copy">
             <div className="kicker">🎄 GUIA DE PRODUÇÃO E VENDA — NATAL 2026</div>
             <p className="product-name">Kit Encomendas de Natal · Panetones que Vendem</p>
-            <h1>Aprenda a Fazer 15 Panetones Recheados para o Natal!</h1>
+            <h1>Faça Panetones Recheados Irresistíveis Neste Natal e Surpreenda Sua Família ou Comece a Lucrar!</h1>
             <p className="sub">
               Receitas completas, técnicas de recheio e orientações para você preparar seus panetones e organizar suas
               encomendas, mesmo começando do zero.
