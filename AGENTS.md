@@ -31,7 +31,7 @@ use the editor.
 
 ## Project rules
 
-- Keep sales offer amounts in src/lib/offer.ts and render price pairs with the shared OfferPrice component. Why: every price placement must use the same confirmed regular and promotional amounts.
+- Keep the sales price in src/lib/offer.ts and render it with the shared OfferPrice component. Why: every price placement must use the same confirmed amount.
 
 - The sales page lives at `/` (src/routes/index.tsx); its ported styles are component classes in `src/styles.css` under `@layer components`, driven by brand tokens. Why: keeps the original page's look in one design-system file.
 - Only the final offer button (`#comprar`) links out to checkout, built with `buildCheckoutUrl` from `src/lib/checkout.ts`; every CTA above it scrolls to that section instead of leaving the page (tested in `src/test/sales-cta.test.tsx`). Why: ad tracking params must still reach the external checkout, and the page funnel must end at one decision point.
