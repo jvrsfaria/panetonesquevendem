@@ -25,7 +25,8 @@ import { OFFER, formatOfferPrice } from "@/lib/offer";
 import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
 
 const TITLE = "Kit Encomendas de Natal — Panetones que Vendem | 15 receitas";
-const DESCRIPTION = `15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF de ${formatOfferPrice(OFFER.regularPrice)} por ${formatOfferPrice(OFFER.promotionalPrice)}.`;
+const DESCRIPTION =
+  `15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF de ${formatOfferPrice(OFFER.regularPrice)} por ${formatOfferPrice(OFFER.promotionalPrice)}.`;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -196,12 +197,10 @@ export function Index() {
                 </li>
               ))}
             </ul>
-            <p className="hero-price">Acesso ao material completo: Por R$19,90</p>{" "}
-            {cta(
-              <>
-                QUERO ACESSAR AS 15 RECEITAS — <OfferPrice />
-              </>,
-            )}
+            <p className="hero-price">
+              Acesso ao material completo: <OfferPrice />
+            </p>{" "}
+            {cta(<>QUERO ACESSAR AS 15 RECEITAS — <OfferPrice /></>)}
             <div className="nota">
               <span>
                 <FileText size={16} aria-hidden="true" />
@@ -286,9 +285,7 @@ export function Index() {
             </div>
             <div className="section-cta">
               {cta()}
-              <p>
-                15 receitas + materiais complementares · <OfferPrice />
-              </p>
+              <p>15 receitas + materiais complementares · <OfferPrice /></p>
             </div>
           </div>
         </section>
@@ -385,12 +382,7 @@ export function Index() {
           <div className="wrap">
             <h2>Escolha os sabores do seu Natal</h2>
             <p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>
-            {ctaCheckout(
-              <>
-                QUERO MEU KIT AGORA — <OfferPrice />
-                !!!!
-              </>,
-            )}
+            {ctaCheckout(<>QUERO MEU KIT AGORA — <OfferPrice />!!!!</>)}
             <div className="criativo">
               <div className="criativo-fotos">
                 {CRIATIVO_FOTOS.map((n) => (
@@ -421,13 +413,7 @@ export function Index() {
           <PixelPrivacy />
         </div>
       </footer>
-      <div className="cta-fixo">
-        {cta(
-          <>
-            Quero meu kit — <OfferPrice />
-          </>,
-        )}
-      </div>
+      <div className="cta-fixo">{cta(<>Quero meu kit — <OfferPrice /></>)}</div>
     </>
   );
 }
