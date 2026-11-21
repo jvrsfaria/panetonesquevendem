@@ -1,5 +1,4 @@
 # Sales page optimization
-- [x] Show confirmed regular and promotional prices together at all six price placements; tests pass and desktop/mobile native checkout forwarding verified.
 - [x] Replace the direct Meta pixel with supplied UTMify pixel; SDK loaded, privacy blocking and mobile Kiwify checkout verified. Published transmission and provider receipt remain unverified (vendor uses its own local endpoint on localhost).
 - [x] Install supplied UTMify script with its attributes; verified mobile native checkout navigation with UTMs (intercepted destination), return-visit attribution and refusal blocking.
 - [x] Fix mobile checkout taps without changing the button's text, size or animation; user confirmed Kiwify and mobile tap opens its payment form.
