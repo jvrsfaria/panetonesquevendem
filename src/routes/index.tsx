@@ -380,7 +380,7 @@ export function Index() {
           <div className="wrap">
             <h2>Escolha os sabores do seu Natal</h2>
             <p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>
-            {ctaCheckout("QUERO MEU ACESSO AGORA POR R$ 19,90!!!!")}
+            {ctaCheckout("QUERO MEU KIT AGORA POR R$ 19,90!!!!")}
             <div className="criativo">
               <div className="criativo-fotos">
                 {CRIATIVO_FOTOS.map((n) => (
