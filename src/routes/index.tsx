@@ -26,7 +26,7 @@ import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
 
 const TITLE = "Kit Encomendas de Natal — Panetones que Vendem | 15 receitas";
 const DESCRIPTION =
-  `15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF por ${formatOfferPrice(OFFER.price)}.`;
+  `15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF de ${formatOfferPrice(OFFER.regularPrice)} por ${formatOfferPrice(OFFER.promotionalPrice)}.`;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [

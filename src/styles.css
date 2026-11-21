@@ -179,7 +179,16 @@
   .cta:hover { transform: translateY(-2px); background: var(--dourado-hover); }
   .cta:focus-visible { outline: 3px solid var(--branco); outline-offset: 3px; }
   .cta-label { min-width: 0; }
-  .offer-price { white-space: nowrap; font-weight: 800; }
+  .offer-price-pair { display: inline-flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 8px; }
+  .offer-price-original, .offer-price-current { white-space: nowrap; }
+  .offer-price-original { font-size: .8em; font-weight: 500; }
+  .offer-price-original s { text-decoration-thickness: 2px; }
+  .offer-price-current strong { font-weight: 800; }
+  .cta .offer-price-pair { font-size: inherit; }
+  .preco .offer-price-pair { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .preco .offer-price-original { font-family: var(--font-sans); font-size: 24px; }
+  .preco .offer-price-current { font-size: 48px; }
+  .hero-price .offer-price-original { color: var(--hero-sub); }
 
   .kicker { font-size: 13px; font-weight: 800; letter-spacing: 0; text-transform: uppercase; color: var(--dourado); }
 
