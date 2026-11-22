@@ -171,6 +171,22 @@
 @layer components {
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 
+  .natal-faixa { background: var(--rodape); color: var(--branco); border-bottom: 1px solid var(--dourado); }
+  .natal-faixa-inner { max-width: 1280px; min-height: 84px; margin: 0 auto; padding: 10px 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px) minmax(0, 1fr); align-items: center; gap: 24px; }
+  .natal-faixa-texto { border: 1px solid var(--dourado); border-radius: 8px; padding: 7px 16px; text-align: center; line-height: 1.35; }
+  .natal-faixa-texto strong { display: block; color: var(--dourado-cl); font-size: 21px; font-weight: 800; }
+  .natal-faixa-texto > span { display: block; font-size: 13px; margin-top: 3px; }
+  .natal-faixa-arvores { display: flex; align-items: end; justify-content: space-evenly; gap: 8px; font-size: 38px; line-height: 1; }
+  .natal-faixa-arvores > span:nth-child(2) { font-size: 50px; }
+  @media (max-width: 600px) {
+    .natal-faixa-inner { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 10px; padding: 10px 12px; }
+    .natal-faixa-texto { padding: 8px 6px; }
+    .natal-faixa-texto strong { font-size: 16px; }
+    .natal-faixa-texto > span { font-size: 11px; }
+    .natal-faixa-arvores > span { display: none; }
+    .natal-faixa-arvores > span:nth-child(2) { display: block; font-size: 28px; }
+  }
+
   .cta {
     display: inline-flex; justify-content: center; align-items: center; gap: 10px; height: auto; white-space: normal; background: var(--dourado-cl); color: var(--cafe); text-decoration: none;
     font-weight: 800; letter-spacing: 0; padding: 18px 28px; border-radius: 999px; font-size: 18px;
