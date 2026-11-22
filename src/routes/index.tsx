@@ -177,18 +177,9 @@ export function Index() {
 
   return (
     <>
-      <aside className="natal-faixa" aria-label="Kit Encomendas de Natal">
+      <aside className="natal-faixa" aria-label="Oferta limitada">
         <div className="natal-faixa-inner">
-          <div className="natal-faixa-arvores" aria-hidden="true">
-            <span>🎄</span><span>🎄</span><span>🎄</span>
-          </div>
-          <div className="natal-faixa-texto">
-            <strong>Kit Encomendas de Natal</strong>
-            <span>15 receitas · Panetones que Vendem</span>
-          </div>
-          <div className="natal-faixa-arvores" aria-hidden="true">
-            <span>🎄</span><span>🎄</span><span>🎄</span>
-          </div>
+          <strong>OFERTA LIMITADA!!!</strong>
         </div>
       </aside>
       <header className="hero">
