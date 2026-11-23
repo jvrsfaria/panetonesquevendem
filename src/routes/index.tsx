@@ -430,7 +430,7 @@ export function Index() {
           <PixelPrivacy />
         </div>
       </footer>
-      <div className="cta-fixo">{cta("Quero meu kit — R$ 19,90")}</div>
+      <div className="cta-fixo">{cta("Quero meu kit")}</div>
     </>
   );
 }
