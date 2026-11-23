@@ -301,22 +301,20 @@ export function Index() {
         </section>
         <section className="sec">
           <div className="wrap">
-            <div className="kicker">O cardápio completo</div>
-            <h2>15 panetones recheados para o seu cardápio</h2>
-            <p className="lead">
-              Combinações clássicas e especiais para você escolher os sabores das suas encomendas de Natal.
-            </p>
+            <h2>Mais alguns sabores que estarão inclusos no material</h2>
             <ul className="rcs">
-              {RECEITAS.map((r, i) => (
-                <li className="rc" key={r.nome}>
-                  <div className="rc-svg">
-                    <img src={photoFor(i + 1)} alt={r.nome} width={640} height={640} loading="lazy" />
-                  </div>
-                  <span className="rc-n">{String(i + 1).padStart(2, "0")}</span>
-                  <b>{r.nome}</b>
-                  <span className={`tag t-${r.tier}`}>{TIER_LABEL[r.tier]}</span>
-                </li>
-              ))}
+              {[6, 8, 10, 3].map((n) => {
+                const recipe = RECEITAS[n - 1];
+                if (!recipe) return null;
+                return (
+                  <li className="rc" key={recipe.nome}>
+                    <div className="rc-svg">
+                      <img src={photoFor(n)} alt={recipe.nome} width={640} height={640} loading="lazy" />
+                    </div>
+                    <b>{recipe.nome.replace(/^Panetone de /, "")}</b>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
