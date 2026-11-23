@@ -180,11 +180,16 @@ export function Index() {
       <aside className="natal-faixa" aria-label="Oferta por tempo limitado">
         <div className="natal-faixa-inner">
           <span className="natal-faixa-decor natal-faixa-decor-left" aria-hidden="true">
-            <span>🎅</span><span>✨</span>
+            <span>🎅</span>
+            <span>✨</span>
           </span>
-          <strong><span aria-hidden="true">⏱️</span> Oferta por tempo limitado</strong>
+          <strong>
+            <span aria-hidden="true">⏱️</span> Oferta por tempo limitado
+          </strong>
           <span className="natal-faixa-decor natal-faixa-decor-right" aria-hidden="true">
-            <span>✨</span><span>🎁</span><span>🎄</span>
+            <span>✨</span>
+            <span>🎁</span>
+            <span>🎄</span>
           </span>
         </div>
       </aside>
@@ -194,38 +199,38 @@ export function Index() {
             <div className="kicker">🎄 GUIA DE PRODUÇÃO E VENDA — NATAL 2026</div>
             <p className="product-name">Kit Encomendas de Natal · Panetones que Vendem</p>
             <h1>Faça Panetones Recheados Irresistíveis Neste Natal e Surpreenda Sua Família ou Comece a Lucrar!</h1>
-          <div className="ill hero-video-wrap">
-            <video
-              ref={videoRef}
-              src={heroVideo.url}
-              className="hero-ill hero-video"
-              width={720}
-              height={1280}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-label="Vídeo de panetone"
-              onPlay={() => setVideoPlaying(true)}
-              onPause={() => setVideoPlaying(false)}
-            />
-            <Button
-              variant="secondary"
-              size="icon"
-              className="hero-video-toggle"
-              aria-label={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
-              title={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
-              onClick={() => {
-                const video = videoRef.current;
-                if (!video) return;
-                if (video.paused) void video.play().catch(() => setVideoPlaying(false));
-                else video.pause();
-              }}
-            >
-              {videoPlaying ? <Pause size={18} /> : <Play size={18} />}
-            </Button>
-          </div>
+            <div className="ill hero-video-wrap">
+              <video
+                ref={videoRef}
+                src={heroVideo.url}
+                className="hero-ill hero-video"
+                width={720}
+                height={1280}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-label="Vídeo de panetone"
+                onPlay={() => setVideoPlaying(true)}
+                onPause={() => setVideoPlaying(false)}
+              />
+              <Button
+                variant="secondary"
+                size="icon"
+                className="hero-video-toggle"
+                aria-label={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
+                title={videoPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
+                onClick={() => {
+                  const video = videoRef.current;
+                  if (!video) return;
+                  if (video.paused) void video.play().catch(() => setVideoPlaying(false));
+                  else video.pause();
+                }}
+              >
+                {videoPlaying ? <Pause size={18} /> : <Play size={18} />}
+              </Button>
+            </div>
             <p className="sub">
               Receitas completas, técnicas de recheio e orientações para você preparar seus panetones e organizar suas
               encomendas, mesmo começando do zero.
@@ -241,7 +246,7 @@ export function Index() {
             <p className="hero-price">
               Acesso ao material completo por <strong>R$ 19,90.</strong>
             </p>{" "}
-            {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
+            {cta("QUERO ACESSAR AS 15 RECEITAS")}
             <div className="nota">
               <span>
                 <FileText size={16} aria-hidden="true" />
@@ -253,7 +258,6 @@ export function Index() {
               </span>
             </div>
           </div>
-
         </div>
       </header>
       <main>
@@ -328,7 +332,10 @@ export function Index() {
                 <li>Para quem cozinha em casa e quer começar a fazer encomendas</li>
                 <li>Para confeiteiras que querem ampliar o cardápio de Natal</li>
                 <li>Para quem quer organizar custos, apresentação e divulgação</li>
-                <li>Para quem quer apenas impressionar e preparar receitas para toda a família neste Natal ou em qualquer época do ano</li>
+                <li>
+                  Para quem quer apenas impressionar e preparar receitas para toda a família neste Natal ou em qualquer
+                  época do ano
+                </li>
               </ul>
             </div>
             <div>
