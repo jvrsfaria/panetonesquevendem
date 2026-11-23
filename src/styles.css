@@ -172,21 +172,24 @@
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 
   .natal-faixa { width: 100%; overflow: hidden; background: #000000; color: #FFD700; border-bottom: 1px solid #FFD700; }
-  .natal-faixa-inner { width: 100%; min-height: 58px; margin: 0 auto; padding: 9px 18px; display: grid; grid-template-columns: minmax(76px, 1fr) minmax(0, 980px) minmax(76px, 1fr); align-items: center; gap: 14px; text-align: center; }
-  .natal-faixa-inner strong { display: block; color: #FFD700; font-size: clamp(14px, 1.45vw, 19px); line-height: 1.25; font-weight: 900; letter-spacing: 0.025em; }
-  .natal-faixa-decor { display: flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; font-size: 29px; line-height: 1; }
+  .natal-faixa-inner { width: 100%; min-height: 66px; margin: 0 auto; padding: 9px 22px; display: grid; grid-template-columns: minmax(130px, 1fr) minmax(0, 760px) minmax(130px, 1fr); align-items: center; gap: 18px; text-align: center; }
+  .natal-faixa-inner strong { display: flex; align-items: center; justify-content: center; gap: 12px; color: #FFD700; font-size: clamp(18px, 2vw, 27px); line-height: 1.2; font-weight: 900; letter-spacing: 0.005em; white-space: nowrap; text-shadow: 0 0 14px rgb(255 215 0 / 24%); }
+  .natal-faixa-inner strong > span { font-size: 1.25em; }
+  .natal-faixa-decor { display: flex; align-items: center; justify-content: center; gap: 12px; white-space: nowrap; font-size: 34px; line-height: 1; }
   .natal-faixa-decor span { display: inline-block; animation: natal-float 2.4s ease-in-out infinite; }
-  .natal-faixa-decor span:nth-child(2) { font-size: 23px; animation: natal-sparkle 1.8s ease-in-out infinite; }
+  .natal-faixa-decor span:nth-child(2) { font-size: 25px; animation: natal-sparkle 1.8s ease-in-out infinite; }
+  .natal-faixa-decor-right span:last-child { font-size: 38px; }
   .natal-faixa-decor-right span:first-child { animation-delay: .45s; }
   .natal-faixa-decor-right span:nth-child(2) { animation-delay: .8s; }
   @keyframes natal-float { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-4px) rotate(4deg); } }
   @keyframes natal-sparkle { 0%, 100% { opacity: .65; transform: scale(.88); } 50% { opacity: 1; transform: scale(1.12); } }
   @media (prefers-reduced-motion: reduce) { .natal-faixa-decor span { animation: none; } }
   @media (max-width: 600px) {
-    .natal-faixa-inner { min-height: 54px; grid-template-columns: 32px minmax(0, 1fr) 32px; gap: 5px; padding: 8px 8px; }
-    .natal-faixa-inner strong { font-size: 12px; letter-spacing: 0; }
-    .natal-faixa-decor { gap: 0; font-size: 20px; }
+    .natal-faixa-inner { min-height: 54px; grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 5px; padding: 8px 8px; }
+    .natal-faixa-inner strong { gap: 5px; font-size: 15px; white-space: normal; letter-spacing: 0; }
+    .natal-faixa-decor { gap: 0; font-size: 22px; }
     .natal-faixa-decor span:nth-child(2) { font-size: 15px; }
+    .natal-faixa-decor-right span:last-child { display: none; }
   }
 
   .cta {
@@ -201,7 +204,10 @@
 
   /* hero */
   .hero { background: var(--vinho-esc); color: var(--branco); padding: 36px 0 40px; overflow: hidden; }
-  .hero .wrap { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 32px; align-items: center; }
+  .hero .wrap { display: block; }
+  .hero-copy { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); column-gap: 32px; align-items: center; }
+  .hero-copy > :not(.hero-video-wrap) { grid-column: 1; }
+  .hero-copy > .hero-video-wrap { grid-column: 2; grid-row: 1 / span 8; align-self: center; }
   .hero .dor { margin: 0 0 14px; color: var(--dourado-cl); font-size: 15px; font-weight: 800; line-height: 1.45; }
   .hero .kicker { color: var(--dourado-cl); }
   .hero h1 { font-size: 42px; margin: 14px 0 16px; }
@@ -311,8 +317,9 @@
 
   @media (max-width: 860px) {
     .hero { padding: 40px 0 48px; }
-    .hero .wrap { grid-template-columns: 1fr; }
-    .hero .ill { order: 0; }
+    .hero .wrap { display: block; }
+    .hero-copy { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+    .hero-copy > .hero-video-wrap { order: 0; width: 100%; margin: 14px auto 20px; }
     .hero-ill { max-width: 100%; }
     .hero-video { max-height: 420px; }
     .grid4 { grid-template-columns: 1fr 1fr; }
