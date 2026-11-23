@@ -301,6 +301,7 @@ export function Index() {
         </section>
         <section className="sec">
           <div className="wrap">
+            <div className="kicker">Sabores irresistíveis</div>
             <h2>Mais alguns sabores que estarão inclusos no material</h2>
             <ul className="rcs">
               {[6, 8, 10, 3].map((n) => {
