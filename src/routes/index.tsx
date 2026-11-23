@@ -177,14 +177,14 @@ export function Index() {
 
   return (
     <>
-      <aside className="natal-faixa" aria-label="Prepare suas encomendas de Natal">
+      <aside className="natal-faixa" aria-label="Oferta por tempo limitado">
         <div className="natal-faixa-inner">
           <span className="natal-faixa-decor natal-faixa-decor-left" aria-hidden="true">
-            <span>🎄</span><span>✨</span>
+            <span>🎅</span><span>✨</span>
           </span>
-          <strong>O NATAL ESTÁ CHEGANDO! PREPARE SUAS ENCOMENDAS COM 15 RECEITAS IRRESISTÍVEIS!</strong>
+          <strong><span aria-hidden="true">⏱️</span> Oferta por tempo limitado</strong>
           <span className="natal-faixa-decor natal-faixa-decor-right" aria-hidden="true">
-            <span>✨</span><span>🎁</span>
+            <span>✨</span><span>🎁</span><span>🎄</span>
           </span>
         </div>
       </aside>
@@ -194,33 +194,6 @@ export function Index() {
             <div className="kicker">🎄 GUIA DE PRODUÇÃO E VENDA — NATAL 2026</div>
             <p className="product-name">Kit Encomendas de Natal · Panetones que Vendem</p>
             <h1>Faça Panetones Recheados Irresistíveis Neste Natal e Surpreenda Sua Família ou Comece a Lucrar!</h1>
-            <p className="sub">
-              Receitas completas, técnicas de recheio e orientações para você preparar seus panetones e organizar suas
-              encomendas, mesmo começando do zero.
-            </p>
-            <ul className="hero-benefits">
-              {BENEFITS.map((text) => (
-                <li key={text}>
-                  <Check size={18} aria-hidden="true" />
-                  {text}
-                </li>
-              ))}
-            </ul>
-            <p className="hero-price">
-              Acesso ao material completo por <strong>R$ 19,90.</strong>
-            </p>{" "}
-            {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
-            <div className="nota">
-              <span>
-                <FileText size={16} aria-hidden="true" />
-                Material digital em PDF
-              </span>
-              <span>
-                <Zap size={16} aria-hidden="true" />
-                Acesso após a confirmação da compra
-              </span>
-            </div>
-          </div>
           <div className="ill hero-video-wrap">
             <video
               ref={videoRef}
@@ -253,6 +226,34 @@ export function Index() {
               {videoPlaying ? <Pause size={18} /> : <Play size={18} />}
             </Button>
           </div>
+            <p className="sub">
+              Receitas completas, técnicas de recheio e orientações para você preparar seus panetones e organizar suas
+              encomendas, mesmo começando do zero.
+            </p>
+            <ul className="hero-benefits">
+              {BENEFITS.map((text) => (
+                <li key={text}>
+                  <Check size={18} aria-hidden="true" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <p className="hero-price">
+              Acesso ao material completo por <strong>R$ 19,90.</strong>
+            </p>{" "}
+            {cta("QUERO ACESSAR AS 15 RECEITAS — R$ 19,90")}
+            <div className="nota">
+              <span>
+                <FileText size={16} aria-hidden="true" />
+                Material digital em PDF
+              </span>
+              <span>
+                <Zap size={16} aria-hidden="true" />
+                Acesso após a confirmação da compra
+              </span>
+            </div>
+          </div>
+
         </div>
       </header>
       <main>
