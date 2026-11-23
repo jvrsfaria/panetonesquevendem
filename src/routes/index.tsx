@@ -328,6 +328,7 @@ export function Index() {
                 <li>Para quem cozinha em casa e quer começar a fazer encomendas</li>
                 <li>Para confeiteiras que querem ampliar o cardápio de Natal</li>
                 <li>Para quem quer organizar custos, apresentação e divulgação</li>
+                <li>Para quem quer apenas impressionar e preparar receitas para toda a família neste Natal ou em qualquer época do ano</li>
               </ul>
             </div>
             <div>
