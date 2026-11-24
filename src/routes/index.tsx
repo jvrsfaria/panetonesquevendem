@@ -126,7 +126,7 @@ const FAQ = [
   },
   {
     q: "O pagamento é feito em ambiente seguro?",
-    a: "O botão direciona para o checkout externo da Celetus por uma conexão HTTPS. As opções de pagamento e condições são apresentadas lá; esta página não coleta seus dados de pagamento.",
+    a: "O botão direciona para o checkout externo da Kiwify por uma conexão HTTPS. As opções de pagamento e condições são apresentadas lá; esta página não coleta seus dados de pagamento.",
   },
 ];
 
@@ -378,7 +378,7 @@ export function Index() {
               </p>
               <p className="checkout-note">
                 <ShieldCheck size={18} aria-hidden="true" />
-                Pagamento no checkout da Celetus
+                Pagamento no checkout da Kiwify
               </p>
             </div>
           </div>
