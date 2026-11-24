@@ -158,7 +158,7 @@ export function Index() {
     target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
     target.querySelector<HTMLAnchorElement>("a.cta")?.focus({ preventScroll: true });
   };
-  const cta = (text = "QUERO MEU KIT AGORA!") => (
+  const cta = (text = "QUERO MEU GUIA AGORA!") => (
     <Button asChild variant="sales" className="cta">
       <a href={`#${OFFER_ID}`} onClick={scrollToOffer}>
         {text}
@@ -166,7 +166,7 @@ export function Index() {
       </a>
     </Button>
   );
-  const ctaCheckout = (text = "QUERO MEU KIT AGORA!") => (
+  const ctaCheckout = (text = "QUERO MEU GUIA AGORA!") => (
     <Button asChild variant="sales" className="cta cta-salto">
       <a href={checkout}>
         {text}
@@ -282,7 +282,7 @@ export function Index() {
         </section>
         <section className="sec creme">
           <div className="wrap">
-            <div className="kicker">Seu kit completo</div>
+            <div className="kicker">Seu guia completo</div>
             <h2>Muito mais que um simples livro de receitas!</h2>
             <div className="dentro">
               {INCLUDED.map(({ icon: Icon, title, text }) => (
@@ -340,7 +340,7 @@ export function Index() {
             </div>
             <div>
               <div className="kicker">Do preparo à encomenda</div>
-              <h2>Receitas e organização no mesmo kit</h2>
+              <h2>Receitas e organização no mesmo guia</h2>
               <p className="lead">
                 Prepare a massa, escolha o recheio e cuide da apresentação. Depois, organize seus custos e divulgue seus
                 sabores com as mensagens do material.
@@ -398,8 +398,8 @@ export function Index() {
         <section className="sec final" id={OFFER_ID}>
           <div className="wrap">
             <h2>Escolha os sabores do seu Natal</h2>
-            <p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só kit digital.</p>
-            {ctaCheckout("QUERO MEU KIT AGORA POR R$ 19,90!!!!")}
+            <p>As 15 receitas e os materiais para organizar suas encomendas, reunidos em um só Guia digital.</p>
+            {ctaCheckout("QUERO MEU GUIA AGORA POR R$ 19,90!!!!")}
             <div className="criativo">
               <div className="criativo-fotos">
                 {CRIATIVO_FOTOS.map((n) => (
@@ -430,7 +430,7 @@ export function Index() {
           <PixelPrivacy />
         </div>
       </footer>
-      <div className="cta-fixo">{cta("Quero meu kit")}</div>
+      <div className="cta-fixo">{cta("Quero meu Guia")}</div>
     </>
   );
 }
