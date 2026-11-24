@@ -24,7 +24,7 @@ import heroVideo from "@/assets/panetone-preparo.mp4.asset.json";
 
 const TITLE = "Kit Encomendas de Natal — Panetones que Vendem | 15 receitas";
 const DESCRIPTION =
-  "15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Kit digital em PDF por R$ 19,90.";
+  "15 receitas de panetones recheados, massa passo a passo, técnicas de montagem, custos e divulgação. Guia digital por R$ 19,90.";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -109,9 +109,9 @@ const INCLUDED = [
 const FAQ = [
   {
     q: "Como recebo o material?",
-    a: "O acesso ao material é liberado após a confirmação da compra. Siga as instruções apresentadas pela plataforma de pagamento para acessar seu PDF.",
+    a: "O acesso ao material é liberado após a confirmação da compra. Siga as instruções apresentadas pela plataforma de pagamento para acessar seu Guia.",
   },
-  { q: "O produto é físico ou digital?", a: "É um material digital em PDF. Nenhum produto físico é enviado." },
+  { q: "O produto é físico ou digital?", a: "É um Guia digital em PDF. Nenhum produto físico é enviado." },
   {
     q: "Preciso ter experiência com confeitaria?",
     a: "Não. A massa base é explicada passo a passo, com receitas e orientações para quem está começando.",
@@ -122,7 +122,7 @@ const FAQ = [
   },
   {
     q: "Posso acessar pelo celular?",
-    a: "Sim. Você pode ler o PDF no celular, tablet ou computador com um leitor de PDF.",
+    a: "Sim. Você pode ler o Guia no celular, tablet ou computador com um leitor de PDF.",
   },
   {
     q: "O pagamento é feito em ambiente seguro?",
@@ -250,7 +250,7 @@ export function Index() {
             <div className="nota">
               <span>
                 <FileText size={16} aria-hidden="true" />
-                Material digital em PDF
+                Guia digital
               </span>
               <span>
                 <Zap size={16} aria-hidden="true" />
@@ -372,7 +372,7 @@ export function Index() {
               <div className="preco-nota">pagamento único</div>
               {cta()}
               <p className="offer-note">
-                Material digital em PDF.
+                Guia digital.
                 <br />
                 Acesso após a confirmação da compra.
               </p>
@@ -419,7 +419,7 @@ export function Index() {
                   <small>15 receitas + materiais complementares</small>
                 </div>
               </div>
-              <p className="criativo-nota">Material digital em PDF · acesso após a confirmação da compra</p>
+              <p className="criativo-nota">Guia digital · acesso após a confirmação da compra</p>
             </div>
           </div>
         </section>
